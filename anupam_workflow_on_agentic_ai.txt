@@ -1,0 +1,4 @@
+install libraries
+import libraries
+
+define agents: researcher & writer
