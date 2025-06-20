@@ -6,6 +6,7 @@ when we ask LLMs to give us an answer to something, if it not available to them 
   - 'control logic': allows access to specified sites/external things to search for the response there
 
 but at the end of the day, we cannot give access to everything in the world
+
 although vast, it is a 'limited' access
 
 ---
