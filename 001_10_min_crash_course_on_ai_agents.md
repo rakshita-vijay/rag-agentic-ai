@@ -2,7 +2,7 @@
 
 ---
 
-when we ask lLMs to give us an answer to something, if it not available to them (personal info/company data), then we can provide access to this info by introducing a 'control logic'
+when we ask LLMs to give us an answer to something, if it not available to them (personal info/company data), then we can provide access to this info by introducing a 'control logic'
   - 'control logic': allows access to specified sites/external things to search for the response there
 
 - but at the end of the day, we cannot give access to everything in the world
