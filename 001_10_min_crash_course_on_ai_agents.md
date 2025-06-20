@@ -33,6 +33,6 @@ but, what if:
 
 instead of human iterating over the responses it gets from performing 20 user-defined steps,
 <br>the agent will include a "critique bot" of sorts to critque its own work, then send to the user 
-the bot will run until a set of "best practices" criteria are met 
+<br>the bot will run until a set of "best practices" criteria are met 
 
 so reasoning + acting + iterating
