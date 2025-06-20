@@ -10,24 +10,24 @@ but at the end of the day, we cannot give access to everything in the world
 
 ---
 
-- thus, we use RAG (Retrieval Augmented Generation)
+thus, we use RAG (Retrieval Augmented Generation)
   - helps AI models 'look things up' before they answer
   - it is AI workflow, basically
 
 ---
 
 the human gives the input to the ai, defining steps: A, B, C
+
 but, what if:
 - we ask a question to an AI
 - then THE AI DEFINES STEPS ABC
 - ai executes said self-defined steps
 - gives us the final responses without the intermediate (the ai does it all for us)
-- 
---> "thinking", "doing" things by itself
+<br>--> "thinking", "doing" things by itself
 
 ---
 
-## ReAct (framework) = Reason + Act
+# ReAct (framework) = Reason + Act
 
 ---
 
