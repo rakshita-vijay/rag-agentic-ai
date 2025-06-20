@@ -2,3 +2,13 @@ install libraries
 import libraries
 
 define agents: researcher & writer
+
+2 agents, 2 tasks (up)
+
+we can add to it: research + write + review + rewrite + send email
+
+research - search engine
+write - llm (llm = llm)
+review - llm 
+rewrite - llm
+sending email - api email, also specify credentials
