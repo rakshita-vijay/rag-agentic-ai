@@ -1,3 +1,7 @@
+**LINK:** https://www.youtube.com/watch?v=FwOTs4UxQS4
+
+---
+
 ## 3 things: LLMs, AI Workflows, AI Agents
 
 ---
