@@ -68,7 +68,7 @@ rag-agentic-ai/
 ├── py_01_article_topic_generator.py                                        # Main script (run this)
 ├── py_02_download_py_file.py                      # Utility (not required)
 ├── py_03_delete_zips.py                           # Utility (not required)
-├── py_04_where_is_downloads.py                    # Utility (not required)
+└── py_04_where_is_downloads.py                    # Utility (not required)
 ```
 
 **Only `py_01_article_topic_generator.py` is needed for the main workflow. Other files are not required.**
