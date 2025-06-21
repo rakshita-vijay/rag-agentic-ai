@@ -29,20 +29,6 @@ except ImportError:
     print(f"Installation failed: {e}")
     sys.exit(1)
 
-# Install tqdm if missing
-try:
-  from tqdm import tqdm
-except ImportError:
-  print("TQDM not found. Installing...")
-  try:
-    # Use pip to install TQDM
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "tqdm"])
-    from tqdm import tqdm
-    print("TQDM installed successfully")
-  except subprocess.CalledProcessError as e:
-    print(f"Installation failed: {e}")
-    sys.exit(1)
-
 # this tells the nb to ignore/disregard any warnings that appear
 import warnings
 warnings.filterwarnings('ignore')
