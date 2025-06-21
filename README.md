@@ -25,27 +25,25 @@ This script helps you brainstorm and organize article ideas on any theme you cho
    - **Summary Generator**: Condenses research into titled bullet points.
    - **Link Collector**: Gathers all source links.
    - **Article Prompt Writer**: Assembles everything into a Markdown draft.
-3. **Async Processing**: The script uses Python’s async features to speed up agent communication (see [Python async/await](https://superfastpython.com/python-async-function/): lets the script handle multiple tasks at once, instead of waiting for each to finish).
+3. **Async Processing**: The script uses Python’s async features to speed up agent communication (lets the script handle multiple tasks at once, instead of waiting for each to finish).
 4. **Output**: The results are saved as a `.md` file in your Downloads folder, with a timestamped filename.
 
----
+---  
 
 ## Features
 
 - **Fully Automatic**: Just run the script — no manual setup needed.
-- **Automatic CrewAI Installation**: Installs required packages if missing.
-- **No Extra Dependencies**: Only standard Python libraries and CrewAI are used. 
-- **Multi-Agent Workflow**: 5 specialized agents collaborate:
-  - Topic Planner
-  - Topic Researcher
-  - Content Condenser
-  - Link Collector
-  - Article Prompt Writer  
-- **Uses Gemini 2.0 Flash**: Script is set up to use the fast, efficient language model from Google AI, Gemini 2.0 Flash.
-- **Async Processing**: Uses Python's `asyncio` for efficient task execution ([What is async?](https://www.theserverside.com/tutorial/Asynchronous-programming-in-Python-tutorial))
-- **Handles Errors**: If something goes wrong (e.g., Gemini API fails), the script prints clear messages and continues where possible. 
-- **Handles Downloads Folder**: Finds (or creates) your system’s Downloads folder for output.  
-- **Markdown Output**: Results are saved in Markdown format for easy editing or sharing.
+- **Automatic CrewAI Installation**: Installs CrewAI if missing, so you don’t need to manage dependencies.
+- **No Extra Dependencies**: Only standard Python libraries and CrewAI are used.
+- **Multi-Agent Workflow**: Five specialized agents (planner, researcher, condenser, collector, writer) collaborate to generate, research, summarize, and format topics.
+- **Uses Gemini 2.0 Flash**: Built to use Google’s Gemini 2.0 Flash model for language processing (requires a valid `GOOGLE_API_KEY`).
+- **Async Processing**: Uses Python’s `asyncio` for efficient, non-blocking task execution ([What is async?](https://www.theserverside.com/tutorial/Asynchronous-programming-in-Python-tutorial)).
+- **Error Handling**: Prints clear warnings if the AI model fails or returns empty data, and continues processing where possible.
+- **Smart Downloads Folder Handling**: Finds (or creates) your system’s Downloads folder automatically; output is saved there with a timestamped filename.
+- **Markdown Output**: Results are saved in easy-to-edit Markdown format; triple backticks are automatically stripped for proper formatting.
+- **Output Display**: If run in a Jupyter notebook, uses `IPython.display` to render formatted markdown.
+- **Model Customization**: You can change the LLM model in the code if needed.
+- **Resilient to Gemini quirks**: If Gemini occasionally returns `None`, the script will warn you and you can retry. 
 
 ---
 
@@ -131,19 +129,7 @@ No manual installation required - the script automatically checks for and instal
 | **Content Condenser** | Summarizer | Creates bullet-point summaries |
 | **Link Collector** | Archivist | Gathers research sources |
 | **Article Prompt Writer** | Compiler | Formats final output |
-
----
-
-## Details & Quirks
-
-- **Automatic Downloads Folder**: The script checks for your Downloads folder and creates it if missing.
-- **Async/await**: Used for agent calls to keep things responsive and efficient.
-- **Gemini API Requirements**: Requires valid `GOOGLE_API_KEY`. May occasionally return `None` responses (retry if occurs).
-- **Markdown Output**: The file is formatted for easy reading or further editing. Triple backticks are automatically stripped from the markdown output to ensure proper formatting.
-- **Error Handling**: If the AI model returns an empty or failed response, the script prints a warning but continues.
-- **CrewAI Install**: The script checks for CrewAI and installs it if not present, so you don’t need to worry about dependencies.
-- **Model**: Uses `gemini/gemini-2.0-flash` by default (you can change this in the code if needed).
-  
+ 
 ---
 
 ## Notes
