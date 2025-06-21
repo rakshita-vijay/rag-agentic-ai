@@ -16,20 +16,6 @@ This script helps you brainstorm and organize article ideas on any theme you cho
 
 ---
 
-## How it Works
-
-1. **User Input**: You enter a theme.
-2. **Agents Do the Work**:
-   - **Topic Planner**: Suggests 3-7 topics.
-   - **Topic Researcher**: Finds info and sources for each topic.
-   - **Summary Generator**: Condenses research into titled bullet points.
-   - **Link Collector**: Gathers all source links.
-   - **Article Prompt Writer**: Assembles everything into a Markdown draft.
-3. **Async Processing**: The script uses Python’s async features to speed up agent communication (lets the script handle multiple tasks at once, instead of waiting for each to finish).
-4. **Output**: The results are saved as a `.md` file in your Downloads folder, with a timestamped filename.
-
----  
-
 ## Features
 
 - **Fully Automatic**: Just run the script — no manual setup needed.
@@ -112,13 +98,19 @@ No manual installation required - the script automatically checks for and instal
    ```  
 
 ---
+ 
+## Workflow:
 
-### Workflow:
-1. Enter your theme (e.g., "Artificial Intelligence")
-2. System generates 3-7 topics
-3. Agents research and condense information
-4. Output saved as `Article_Topic_Generated_DD-MM-YYYY_HH-MM-SS.md` in your downloads folder
-
+1. **User Input**: You enter a theme.
+2. **Agents Do the Work**:
+   - **Topic Planner**: Suggests 3-7 topics.
+   - **Topic Researcher**: Finds info and sources for each topic.
+   - **Summary Generator**: Condenses research into titled bullet points.
+   - **Link Collector**: Gathers all source links.
+   - **Article Prompt Writer**: Assembles everything into a Markdown draft.
+3. **Async Processing**: The script uses Python’s async features to speed up agent communication (lets the script handle multiple tasks at once, instead of waiting for each to finish).
+4. **Output**: The results are saved as a `.md` file in your Downloads folder, with a timestamped filename - `Article_Topic_Generated_DD-MM-YYYY_HH-MM-SS.md`.
+ 
 ---
 
 ## Agent Architecture
