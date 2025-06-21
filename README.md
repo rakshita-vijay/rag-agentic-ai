@@ -18,7 +18,7 @@ This script helps you brainstorm and organize article ideas on any theme you cho
 
 ## Features
 
-- **Fully Automatic**: Just run the script — no manual setup needed.
+- **Fully Automatic**: Just run the script - no manual setup needed.
 - **Automatic CrewAI Installation**: Installs CrewAI if missing, so you don’t need to manage dependencies.
 - **No Extra Dependencies**: Only standard Python libraries and CrewAI are used.
 - **Multi-Agent Workflow**: Five specialized agents (planner, researcher, condenser, collector, writer) collaborate to generate, research, summarize, and format topics.
@@ -28,16 +28,8 @@ This script helps you brainstorm and organize article ideas on any theme you cho
 - **Smart Downloads Folder Handling**: Finds (or creates) your system’s Downloads folder automatically; output is saved there with a timestamped filename.
 - **Markdown Output**: Results are saved in easy-to-edit Markdown format; triple backticks are automatically stripped for proper formatting.
 - **Output Display**: If run in a Jupyter notebook, uses `IPython.display` to render formatted markdown.
-- **Model Customization**: You can change the LLM model in the code if needed.
+- **Model Customization**: To use a different LLM, change the `model` parameter in the LLM initialization.
 - **Resilient to Gemini quirks**: If Gemini occasionally returns `None`, the script will warn you and you can retry. 
-
----
-
-## Technical Highlights
-- Automatic Dependency Handling
-- Async Processing
-- Smart File Handling
-- Output Formatting
 
 ---
 
@@ -55,15 +47,15 @@ rag-agentic-ai/
 └── py_04_where_is_downloads.py                    # Utility (not required)
 ```
 
-**Only `py_01_article_topic_generator.py` is needed for the main workflow. Other files are not required.**
+**Only `py_01_article_topic_generator.py` is needed for the main workflow. The other `.py` files are utilities/experiments, and not part of the main workflow.**
 
 ---
 
 ## Dependencies
 ```python
-crewai == 0.28.8
+crewai == 0.28.8         # auto-installed
 google-generativeai 
-ipython # For markdown display in notebooks
+ipython                  # For markdown display in notebooks
 ```
  
 ---
@@ -77,10 +69,9 @@ ipython # For markdown display in notebooks
 ---
 
 ## Installation
-No manual installation required - the script automatically checks for and installs:
-1. Python 3.10-3.13
-2. CrewAI library
-3. Required dependencies
+No manual installation required - the script automatically checks for and installs: 
+1. CrewAI library
+2. Required dependencies
 
 ---
 
@@ -91,8 +82,11 @@ No manual installation required - the script automatically checks for and instal
    git clone https://github.com/yourusername/rag-agentic-ai.git
    cd rag-agentic-ai
    ```
-
-2. **Run the script**:
+   
+2. **Enter your own valid API key**:
+   <br>Search for ```GOOGLE_API_KEY```, and replace it with an API key generated from ([Google AI Studio](https://aistudio.google.com/app/apikey)). 
+   
+4. **Run the script**:
    ```bash
    python py_01_article_topic_generator.py
    ```  
@@ -120,15 +114,7 @@ No manual installation required - the script automatically checks for and instal
 | **Topic Researcher** | Investigator | Researches each topic in-depth |
 | **Content Condenser** | Summarizer | Creates bullet-point summaries |
 | **Link Collector** | Archivist | Gathers research sources |
-| **Article Prompt Writer** | Compiler | Formats final output |
- 
----
-
-## Notes
-
-- Only the main script (`py_01_article_topic_generator.py`) is needed for normal use.
-- The other `.py` files are utilities or experiments and not part of the main workflow.
-- For related code about file and downloads folder handling, see [this discussion](https://www.perplexity.ai/search/import-os-import-zipfile-impor-E0IlKSJuSkqZHNCqtW5UIQ).
+| **Article Prompt Writer** | Compiler | Formats final output | 
 
 ---
 
@@ -147,6 +133,6 @@ No manual installation required - the script automatically checks for and instal
 ## Links I Referred to for Ideas:
 
 [1] https://dnmtechs.com/automatically-installing-required-packages-in-python-script/
-[2] https://www.theserverside.com/tutorial/Asynchronous-programming-in-Python-tutorial
-[3] https://ai.google.dev/gemini-api/docs/text-generation 
-[4] https://github.com/rithikamalve/python-file-download-automator 
+<br>[2] https://www.theserverside.com/tutorial/Asynchronous-programming-in-Python-tutorial
+<br>[3] https://ai.google.dev/gemini-api/docs/text-generation 
+<br>[4] https://github.com/rithikamalve/python-file-download-automator 
