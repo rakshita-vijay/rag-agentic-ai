@@ -33,18 +33,19 @@ This script helps you brainstorm and organize article ideas on any theme you cho
 
 ---
 
-## Repository Structure
-
+## Repository Structure 
 ```
 rag-agentic-ai/
-├── 001_10_min_crash_course_on_ai_agents.md        # Notes (not required)    
-├── 002_anupam_workflow_on_agentic_ai.md           # Notes (not required)    
-├── 003_RAG_vs_fine_tuning_prompt_engineering.md   # Notes (not required)    
+├── extra_code/                                      # Utility scripts (not required)
+│   ├── py_02_download_py_file.py 
+│   ├── py_03_delete_zips.py 
+│   └── py_04_where_is_downloads.py 
+├── notes/                                           # Reference notes (not required)
+│   ├── 001_10_min_crash_course_on_ai_agents.md 
+│   ├── 002_anupam_workflow_on_agentic_ai.md 
+│   └── 003_RAG_vs_fine_tuning_prompt_engineering.md 
 ├── README.md
-├── py_01_article_topic_generator.py                                        # Main script (run this)
-├── py_02_download_py_file.py                      # Utility (not required)
-├── py_03_delete_zips.py                           # Utility (not required)
-└── py_04_where_is_downloads.py                    # Utility (not required)
+└── py_01_article_topic_generator.py                 # Main script (run this) 
 ```
 
 **Only `py_01_article_topic_generator.py` is needed for the main workflow. The other `.py` files are utilities/experiments, and not part of the main workflow.**
