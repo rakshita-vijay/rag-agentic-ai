@@ -29,7 +29,7 @@ except ImportError:
     print(f"Installation failed: {e}")
     sys.exit(1)
 
-# this tells the nb to ignore/disregard any warnings that appear
+# this tells the code to ignore/disregard any warnings that appear
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -40,7 +40,7 @@ GOOGLE_API_KEY = "AIzaSyD85o-khWOLs-5lznhMkM60aZNJCcwD8yI"
 
 llm = LLM(
   model="gemini/gemini-2.0-flash",
-  temperature=0.8,  # or your preferred value
+  temperature=0.8,                 # or your preferred value
   api_key=GOOGLE_API_KEY
 )
 
