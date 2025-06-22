@@ -2,10 +2,10 @@
 
 ---
 
-## 4 agentic design patterns things: rtpm (red turtles paint murals
->                       R: Reflection
->                       T: Tool Use
->                       P: Planning
->                       M: Multi-agents
+## 4 agentic design patterns things: RTPM (red turtles paint murals)
+  - R: Reflection
+  - T: Tool Use
+  - P: Planning
+  - M: Multi-agents
 
 ---
