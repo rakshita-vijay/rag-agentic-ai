@@ -9,10 +9,11 @@ if del_or_not.lower()[0] != 'y':
   sys.exit(1)
 
 curr_dir = os.getcwd()
+parent_dir = os.path.dirname(curr_dir)
 
 count = 0
 
-for folders, _, files in os.walk(curr_dir):
+for folders, _, files in os.walk(parent_dir):
   for file in files:
     if re.search(r'^zipped_file_', file):
       print(f"Deleting file: {file}")
