@@ -4,7 +4,7 @@ import zipfile
 import datetime
 import re
 
-file_path = "./py_01_article_topic_generator.py"
+file_path = "../py_01_article_topic_generator.py"
 
 r = datetime.datetime.today()
 todayyy = f"{r.day}-{r.month}-{r.year}_{r.hour}-{r.minute}-{r.second}"

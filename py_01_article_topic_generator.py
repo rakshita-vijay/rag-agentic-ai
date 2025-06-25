@@ -237,8 +237,8 @@ linkCollection = Task(
   4. Do not modify or shorten URLs
   5. Example:
   ### Resources Used
-  1. https://www.nature.com/articles/bci-technology
-  2. https://ieeexplore.ieee.org/document/123456''',
+    1. https://www.nature.com/articles/bci-technology
+    2. https://ieeexplore.ieee.org/document/123456''',
   expected_output="Numbered list of exact source URLs under heading"
 )
 
@@ -266,7 +266,7 @@ crewww = Crew(
   process = "sequential",
   verbose = False,
   memory = False,
-  share_crew = False,
+  share_crew = True,
   planning = False,
   chat_llm = llm
 )
