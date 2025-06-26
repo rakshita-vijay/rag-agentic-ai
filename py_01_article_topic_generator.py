@@ -54,7 +54,7 @@ from random import randint
 theam = os.environ.get("THEME")
 if not theam:
   theam = input("Enter the theme: ")
-  
+
 numberOfTopics = randint(5, 9)
 
 print()
