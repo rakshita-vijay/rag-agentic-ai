@@ -27,4 +27,5 @@ jobs:
       - name: Run article topic generator
         run: python py_01_article_topic_generator.py
         env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }} 
+          THEME: "Artificial Intelligence in Healthcare"
