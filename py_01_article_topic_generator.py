@@ -34,12 +34,12 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import os
-from crewai import Agent, Task, Crew, LLM  
+from crewai import Agent, Task, Crew, LLM
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
   raise ValueError("GOOGLE_API_KEY environment variable not set. Please set it as a secret in your GitHub repository.")
-  
+
 llm = LLM(
   model="gemini/gemini-2.0-flash",
   temperature=0.8,                 # or your preferred value
@@ -50,7 +50,7 @@ from random import randint
 
 # To get the theme of the topics to be decided
 theam = input("Enter the theme: ")
-numberOfTopics = randint(3, 7)
+numberOfTopics = randint(5, 9)
 
 print()
 print("The theme chosen is: {}".format(theam))
@@ -204,8 +204,8 @@ research = Task(
     - **Important Fact:** Detailed fact
 
     ### Source Links
-    1. https://exact.source/link1
-    2. https://exact.source/link2
+    1. <exact link here>
+    2. <exact link here>
   7. Send the research findings to the Summary Generator''',
   expected_output="Structured research findings with exact source links for all topics"
 )
@@ -256,7 +256,7 @@ chunkJoin = Task(
     ### Condensed Information Points
     - **heading:** summary (from condenser / Summary Generator)
     ### Resources Used
-    1. https://exact.link/here
+    1. <exact link here>
   5. Do not add commentary or summaries''',
   expected_output=f"Structured output with headings, bullet points, and exact links for all topics"
 )
@@ -340,7 +340,12 @@ async def main():
 
   file_writer = f"Article_Topic_Generated_{rn}.md"
   fw = os.path.join(downloads_folder, file_writer)
+
   f = open(fw, 'w')
+  f.write(f"# Theme: {theam} \n\n---\n\n")
+  f.close()
+
+  f = open(fw, 'a')
   f.write(resp.raw)
   f.close()
 
