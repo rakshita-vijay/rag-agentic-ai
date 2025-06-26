@@ -34,10 +34,12 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import os
-from crewai import Agent, Task, Crew, LLM
+from crewai import Agent, Task, Crew, LLM  
 
-GOOGLE_API_KEY = "AIzaSyD85o-khWOLs-5lznhMkM60aZNJCcwD8yI"
-
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+  raise ValueError("GOOGLE_API_KEY environment variable not set. Please set it as a secret in your GitHub repository.")
+  
 llm = LLM(
   model="gemini/gemini-2.0-flash",
   temperature=0.8,                 # or your preferred value
