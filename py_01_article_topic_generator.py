@@ -38,7 +38,7 @@ from crewai import Agent, Task, Crew, LLM
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
-  raise ValueError("GOOGLE_API_KEY environment variable not set. Please set it as a secret in your GitHub repository.")
+  raise ValueError("GOOGLE_API_KEY environment variable not set. Please set it as a secret in your GitHub repository. If in command line/terminal, run the command: export GOOGLE_API_KEY='YOUR_API_KEY' ")
 
 llm = LLM(
   model="gemini/gemini-2.0-flash",
