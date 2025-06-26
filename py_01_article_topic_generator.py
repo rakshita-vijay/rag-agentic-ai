@@ -161,6 +161,7 @@ Because there are 5 agents, there must be 5 tasks, namely:
 """
 
 plan = Task(
+  name='Planning',
   agent = planner,
   description = f'''
   1. Identify the latest trends related to {theam}, along with key players and noteworthy news \n
@@ -191,6 +192,7 @@ agent: Agent responsible for task execution. Represents entity performing task.
 """
 
 research = Task(
+  name='Researching',
   agent=researcher,
   description=f'''
   For each topic received from the Topic Planner:
@@ -216,6 +218,7 @@ research = Task(
 )
 
 textCondense = Task(
+  name='Condensing',
   agent=condenser,
   description=f'''
   1. Receive research content from Topic Researcher
@@ -234,6 +237,7 @@ textCondense = Task(
 )
 
 linkCollection = Task(
+  name='Link Collecting',
   agent=collector,
   description=f'''
   1. Collect all source links from Topic Researcher
@@ -250,6 +254,7 @@ linkCollection = Task(
 )
 
 chunkJoin = Task(
+  name='Joining, Formatting, and Writing',
   agent=writer,
   description=f'''
   For each of the {numberOfTopics} topics:
