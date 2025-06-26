@@ -1,0 +1,25 @@
+name: Run Article Topic Generator
+
+on:
+  workflow_dispatch:  # Allows manual trigger, or use 'push' for automatic
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # Or your required version
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt || true  # If you have a requirements file
+
+      - name: Run article topic generator
+        run: python py_01_article_topic_generator.py
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
