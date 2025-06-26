@@ -1,8 +1,13 @@
 name: Run Article Topic Generator
 
-on:
-  workflow_dispatch:  # Allows manual trigger, or use 'push' for automatic
+# on:
+#   workflow_dispatch:  # Allows manual trigger, or use 'push' for automatic
 
+on:
+  push:
+    branches:
+      - main
+      
 jobs:
   build:
     runs-on: ubuntu-latest
