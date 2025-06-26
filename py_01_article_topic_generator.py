@@ -49,7 +49,12 @@ llm = LLM(
 from random import randint
 
 # To get the theme of the topics to be decided
-theam = input("Enter the theme: ")
+# theam = input("Enter the theme: ")
+
+theam = os.environ.get("THEME")
+if not theam:
+  theam = input("Enter the theme: ")
+  
 numberOfTopics = randint(5, 9)
 
 print()
