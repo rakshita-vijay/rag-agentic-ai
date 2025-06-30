@@ -46,6 +46,9 @@ class ArticleTopicGenerator:
         if 'progress' not in st.session_state:
             st.session_state.progress = {"current": 0, "total": 5}
 
+        # Increment completed tasks
+        st.session_state.progress["current"] += 1
+
         # Get task name
         task_name = getattr(output, 'name', 'Unknown Task')
         if not task_name or task_name == 'Unknown Task':
