@@ -77,7 +77,7 @@ with st.form("generator_form"):
         st.session_state['num_topics'] = num_topics
 
         st.balloons()
-        st.success(f"🎉 {num_topics} topics have been selected!") 
+        st.success(f"🎉  {num_topics} topics will be generated!") 
         
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
