@@ -142,7 +142,7 @@ if st.session_state.get('result_data'):
     filename = f"article_topics_{theme.replace(' ', '_')}_{in_ts}.md"
      
     b64 = base64.b64encode(data['content'].encode()).decode()
-    href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold; font-size: 20px;"> 📥 Download Topics </a>'
+    href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold; font-size: 30px;"> 📥 Download Topics </a>'
     st.markdown(href, unsafe_allow_html=True)
     
     # Add to history
