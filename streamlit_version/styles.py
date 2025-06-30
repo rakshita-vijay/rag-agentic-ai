@@ -22,13 +22,11 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 0 10px rgba(154, 123, 255, 0.7);
 }  
 
-.stSpinner > div {
-    width: 40px !important;
-    height: 40px !important;
-    border-width: 10px !important;
+.stSpinner {
+    font-size: 60px !important; 
 }
 
-.stSpinner, .stSpinner > div > div {
+.stSpinner > div, .stSpinner > div > div {
     font-size: 45px !important; 
 }
 
