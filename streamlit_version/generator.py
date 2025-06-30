@@ -229,6 +229,7 @@ class ArticleTopicGenerator:
             if progress_callback:
                 progress_callback(f"🎯 Planning {number_of_topics} topics for: {theme}")
              
+            self.setup_llm()
             self.create_agents(theme, number_of_topics)
             self.create_tasks(theme, number_of_topics)
             
