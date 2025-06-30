@@ -232,8 +232,7 @@ class ArticleTopicGenerator:
                 agents=[self.planner, self.researcher, self.condenser, self.collector, self.writer],
                 tasks=[self.plan, self.research, self.textCondense, self.linkCollection, self.chunkJoin],
                 process="sequential",
-                verbose=False,
-                memory=False,
+                verbose=False, 
                 share_crew=True,
                 planning=False,
                 chat_llm=self.llm
