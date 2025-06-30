@@ -56,7 +56,7 @@ def progress_callback(message):
     st.session_state.progress_messages.append(message)
 
 # UI Components
-st.title("✨ AI Article Topic Generator")
+st.title("✨ AI Article Topic Generator <3")
 st.subheader("Create engaging article topics with AI")
 
 # API Key check
