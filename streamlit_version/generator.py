@@ -2,53 +2,29 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import os, subprocess, warnings, asyncio
-
-from random import randint 
-
-# Suppress warnings
-warnings.filterwarnings('ignore')
-
-# Check Python version compatibility
-if not (sys.version_info >= (3, 10) and sys.version_info < (3, 14)):
-    print("Error: CrewAI requires Python >=3.10 and <3.14")
-    print(f"Your Python version: {sys.version}")
-    sys.exit(1)
-
-# Install CrewAI if missing
-try:
-    # import crewai
-    from crewai import Agent, Task, Crew, LLM 
-except ImportError:
-    print("CrewAI not found. Installing...")
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "crewai"])
-        # import crewai
-        from crewai import Agent, Task, Crew, LLM 
-        print("CrewAI installed successfully")
-    except subprocess.CalledProcessError as e:
-        print(f"Installation failed: {e}")
-        sys.exit(1) 
+import os
+import asyncio
+from random import randint
+from crewai import Agent, Task, Crew, LLM
 
 class ArticleTopicGenerator:
     def __init__(self):
-        self.completed_tasks = 0
-        self.total_tasks = 5  # Planner, Researcher, Condenser, Collector, Writer
-
-    # Inside each task completion callback:
-    def task_callback(self, output):
-        import streamlit as st
+        self.setup_llm()
+        self.total_tasks = 5  # 5 agents/tasks
         
-        # Initialize if not exists
+    def task_callback(self, output):
+        """Callback function executed after each task completes"""
+        import streamlit as st
+        # Initialize progress if not exists
         if 'progress' not in st.session_state:
-            st.session_state.progress = {"current": 0, "total": 5}
-
+            st.session_state.progress = {"current": 0, "total": self.total_tasks}
+        
         # Increment completed tasks
         st.session_state.progress["current"] += 1
-
+        
         # Get task name
         task_name = getattr(output, 'name', 'Unknown Task')
-        if not task_name or task_name == 'Unknown Task':
+        if not task_name:
             task_name = getattr(output, 'description', 'Unknown Task')[:50] + "..."
         
         # Add completion message
@@ -57,8 +33,8 @@ class ArticleTopicGenerator:
         st.session_state.progress_messages.append(f"✅ {task_name} completed!")
         
         # Force UI update
-        st.rerun() 
-        
+        st.rerun()
+    
     def setup_llm(self):
         """Initialize the LLM with API key from environment"""
         GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
@@ -69,10 +45,10 @@ class ArticleTopicGenerator:
             model="gemini/gemini-2.0-flash",
             temperature=0.8,
             api_key=GOOGLE_API_KEY
-        ) 
-        
+        )
+    
     def create_agents(self, theme, number_of_topics):
-        """Create all the CrewAI agents""" 
+        """Create all the CrewAI agents"""
         self.planner = Agent(
             role = "Topic Planner",
             goal = f"To collect {number_of_topics} engaging topics related to the theme: {theme}, addressed to an academic audience",
@@ -121,10 +97,10 @@ class ArticleTopicGenerator:
             max_iter = 100,
             verbose = False,
             allow_delegation = False
-        )
-    
+        ) 
+        
     def create_tasks(self, theme, number_of_topics):
-        """Create all the tasks for the agents""" 
+        """Create all the tasks for the agents"""
         self.plan = Task(
             name='Planning',
             agent = self.planner,
@@ -228,6 +204,122 @@ class ArticleTopicGenerator:
             callback=self.task_callback
         )
     
+    async def generate_topics(self, theme, number_of_topics):
+        """Generate article topics using CrewAI agents"""
+        self.create_agents(theme, number_of_topics)
+        self.create_tasks(theme, number_of_topics)
+        
+        crew = Crew(
+            agents=[self.planner, self.researcher, self.condenser, self.collector, self.writer],
+            tasks=[self.plan, self.research, self.textCondense, self.linkCollection, self.chunkJoin],
+            process="sequential",
+            verbose=False,
+            memory=False
+        )
+        
+        return await crew.kickoff_async(inputs={"theme": theme, "number of topics": number_of_topics})
+
+async def generate_article_topics(theme, num_topics):
+    """Convenience function to generate topics"""
+    generator = ArticleTopicGenerator()
+    return await generator.generate_topics(theme, num_topics)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+import os, subprocess, warnings, asyncio
+
+from random import randint 
+
+# Suppress warnings
+warnings.filterwarnings('ignore')
+
+# Check Python version compatibility
+if not (sys.version_info >= (3, 10) and sys.version_info < (3, 14)):
+    print("Error: CrewAI requires Python >=3.10 and <3.14")
+    print(f"Your Python version: {sys.version}")
+    sys.exit(1)
+
+# Install CrewAI if missing
+try:
+    # import crewai
+    from crewai import Agent, Task, Crew, LLM 
+except ImportError:
+    print("CrewAI not found. Installing...")
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "crewai"])
+        # import crewai
+        from crewai import Agent, Task, Crew, LLM 
+        print("CrewAI installed successfully")
+    except subprocess.CalledProcessError as e:
+        print(f"Installation failed: {e}")
+        sys.exit(1) 
+
+class ArticleTopicGenerator:
+    def __init__(self):
+        self.completed_tasks = 0
+        self.total_tasks = 5  # Planner, Researcher, Condenser, Collector, Writer
+
+    # Inside each task completion callback:
+    def task_callback(self, output):
+        import streamlit as st
+        
+        # Initialize if not exists
+        if 'progress' not in st.session_state:
+            st.session_state.progress = {"current": 0, "total": 5}
+
+        # Increment completed tasks
+        st.session_state.progress["current"] += 1
+
+        # Get task name
+        task_name = getattr(output, 'name', 'Unknown Task')
+        if not task_name or task_name == 'Unknown Task':
+            task_name = getattr(output, 'description', 'Unknown Task')[:50] + "..."
+        
+        # Add completion message
+        if 'progress_messages' not in st.session_state:
+            st.session_state.progress_messages = []
+        st.session_state.progress_messages.append(f"✅ {task_name} completed!")
+        
+        # Force UI update
+        st.rerun() 
+        
+    def setup_llm(self):
+        """Initialize the LLM with API key from environment"""
+        GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+        if not GOOGLE_API_KEY:
+            raise ValueError("GOOGLE_API_KEY environment variable not set.")
+        
+        self.llm = LLM(
+            model="gemini/gemini-2.0-flash",
+            temperature=0.8,
+            api_key=GOOGLE_API_KEY
+        ) 
+        
+    def create_agents(self, theme, number_of_topics):
+        """Create all the CrewAI agents""" 
+        
+    
+    def create_tasks(self, theme, number_of_topics):
+        """Create all the tasks for the agents""" 
+        
+    
     async def generate_topics(self, theme, number_of_topics, progress_callback=None):
         """Generate article topics using CrewAI agents"""
         try: 
@@ -285,3 +377,4 @@ async def generate_article_topics(theme, num_topics, progress_callback=None):
     """Convenience function to generate topics"""
     generator = ArticleTopicGenerator()
     return await generator.generate_topics(theme, num_topics, progress_callback)
+'''
