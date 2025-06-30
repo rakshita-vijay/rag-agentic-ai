@@ -69,9 +69,7 @@ with st.form("generator_form"):
     
     if generate_btn and theme:
         # Clear previous progress messages
-        st.session_state.progress_messages = [] 
-        # Create progress container
-        progress_container = st.container()
+        st.session_state.progress_messages = []  
         
         num_topics = random.randint(5, 10)
         st.session_state['num_topics'] = num_topics
@@ -85,7 +83,7 @@ with st.form("generator_form"):
                 result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback)) 
                 
                 # Display progress messages
-                with progress_container:
+                with st.container():
                     for msg in st.session_state.progress_messages:
                         st.success(msg)
                 
