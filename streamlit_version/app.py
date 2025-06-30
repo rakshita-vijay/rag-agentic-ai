@@ -82,7 +82,7 @@ with st.form("generator_form"):
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
                 # Run the async generator
-                result_data = asyncio.run(generate_article_topics(theme, progress_callback))
+                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))
                 
                 # Display progress messages
                 with progress_container:
