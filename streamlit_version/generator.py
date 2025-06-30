@@ -116,8 +116,7 @@ class ArticleTopicGenerator:
                 2. Topic Two 
                 3. Topic Three
             6. Send the list to the Topic Researcher''',
-            expected_output=f"A {number_of_topics}-item numbered list of {theme}-related topics with no extra text",
-            callback=self.task_callback
+            expected_output=f"A {number_of_topics}-item numbered list of {theme}-related topics with no extra text" 
         )
         
         self.research = Task(
@@ -143,8 +142,7 @@ class ArticleTopicGenerator:
             1. <exact link here>
             2. <exact link here>
             7. Send the research findings to the Summary Generator''',
-            expected_output="Structured research findings with exact source links for all topics",
-            callback=self.task_callback
+            expected_output="Structured research findings with exact source links for all topics" 
         )
         
         self.textCondense = Task(
@@ -163,8 +161,7 @@ class ArticleTopicGenerator:
                 ### Condensed Information Points
                 - **Brain-Computer Interface:** Direct pathway between brain and external devices
                 - **Neural Signals:** BCIs interpret signals to control computers''',
-            expected_output = "Markdown section with bolded headings and colon-separated summaries",
-            callback=self.task_callback
+            expected_output = "Markdown section with bolded headings and colon-separated summaries" 
         )
         
         self.linkCollection = Task(
@@ -181,8 +178,7 @@ class ArticleTopicGenerator:
                 ### Resources Used
                 1. https://www.nature.com/articles/bci-technology
                 2. https://ieeexplore.ieee.org/document/123456''',
-            expected_output="Numbered list of exact source URLs under heading",
-            callback=self.task_callback
+            expected_output="Numbered list of exact source URLs under heading" 
         )
         
         self.chunkJoin = Task(
@@ -202,8 +198,7 @@ class ArticleTopicGenerator:
                 ### Resources Used
                 1. <exact link here>
                 5. Do not add commentary or summaries''',
-            expected_output=f"Structured output with headings, bullet points, and exact links for all topics",
-            callback=self.task_callback
+            expected_output=f"Structured output with headings, bullet points, and exact links for all topics" 
         )
     
     async def generate_topics(self, theme, number_of_topics, progress_callback=None):
