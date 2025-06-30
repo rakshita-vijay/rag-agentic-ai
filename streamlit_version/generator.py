@@ -34,8 +34,32 @@ except ImportError:
         sys.exit(1)
 
 class ArticleTopicGenerator:
+
+class ArticleTopicGenerator:
     def __init__(self):
-        self.setup_llm()
+        self.completed_tasks = 0
+        self.total_tasks = 5  # Planner, Researcher, Condenser, Collector, Writer
+
+    # Inside each task completion callback:
+    def task_callback(self, output):
+        import streamlit as st
+        
+        # Initialize if not exists
+        if 'progress' not in st.session_state:
+            st.session_state.progress = {"current": 0, "total": 5}
+
+        # Get task name
+        task_name = getattr(output, 'name', 'Unknown Task')
+        if not task_name or task_name == 'Unknown Task':
+            task_name = getattr(output, 'description', 'Unknown Task')[:50] + "..."
+        
+        # Add completion message
+        if 'progress_messages' not in st.session_state:
+            st.session_state.progress_messages = []
+        st.session_state.progress_messages.append(f"✅ {task_name} completed!")
+        
+        # Force UI update
+        st.rerun() 
         
     def setup_llm(self):
         """Initialize the LLM with API key from environment"""
