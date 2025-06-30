@@ -31,9 +31,7 @@ except ImportError:
         print("CrewAI installed successfully")
     except subprocess.CalledProcessError as e:
         print(f"Installation failed: {e}")
-        sys.exit(1)
-
-class ArticleTopicGenerator:
+        sys.exit(1) 
 
 class ArticleTopicGenerator:
     def __init__(self):
