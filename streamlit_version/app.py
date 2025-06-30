@@ -2,15 +2,16 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import os
+import os, asyncio, random, uuid, datetime, base64, styles, scripts
 import streamlit as st
-import asyncio
-import random
-import uuid
-import datetime
-import base64
-import styles
-import scripts
+
+from streamlit_extras.let_it_rain import rain
+rain(
+    emoji="🎉",         # Any emoji you want
+    font_size=54,       # Size of the emoji
+    falling_speed=5,    # Speed of falling
+    animation_length="infinite",  # How long the animation runs
+)
 
 try:
     from generator import generate_article_topics
@@ -69,6 +70,7 @@ def show_progress():
     # Completion celebration
     if p["current"] == p["total"] and st.session_state.result_data:
         st.balloons()
+        rain()
         st.success("🎉 All tasks completed!")
 
 # Main input area
@@ -78,6 +80,7 @@ with st.form("generator_form"):
     
     st.session_state.num_topics = random.randint(5, 10) 
     st.balloons()
+    rain()
     
     if generate_btn and theme:
         # Reset state for new generation
@@ -86,6 +89,7 @@ with st.form("generator_form"):
         st.session_state.progress_messages = []
         st.session_state.result_data = None 
         # st.balloons()
+        # rain()
         st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
         
         # Show initial progress
