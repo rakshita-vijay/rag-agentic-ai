@@ -55,7 +55,7 @@ class ArticleTopicGenerator:
             role = "Topic Planner",
             goal = f"To collect {numberOfTopics} engaging topics related to the theme: {theam}, addressed to an academic audience",
             backstory = f"You have been given a theme - {theam} - and you must collect {numberOfTopics} topics related to the theme, for people to write articles about. It can be in-depth core topics related to the theme, or informatory topics as well. Your work is the basis for the user to write an article (college graduate level) on these topics.",
-            llm = llm,
+            llm = self.llm,
             max_iter = 100,
             verbose = False,
             allow_delegation = False
@@ -65,7 +65,7 @@ class ArticleTopicGenerator:
             role = "Topic Researcher",
             goal = f"To collect in-depth information (and their sources) on the {numberOfTopics} {theam}-related topics provided by the Topic Planner",
             backstory = f"For each topic given by the Topic Planner, you will do in-depth research into each, collect information and their source links, and send the links to the Link Collector. Also, you send the relevant informaton you have collected to the Summary Generator.",
-            llm = llm,
+            llm = self.llm,
             max_iter = 100,
             verbose = False,
             allow_delegation = True
@@ -75,7 +75,7 @@ class ArticleTopicGenerator:
             role = "Summary Generator",
             goal = f"To condense paragraphs of information into a title-one liner duo and show it to the user",
             backstory = "You will take the information the Topic Researcher, and split it into small chunks. Then you will condense it into a bullet point-worth of information and title each of these bullets. The user will elaborate on each point, by themselves, as they see fit. This should be shown to the user under the title 'Condensed Information Points:'",
-            llm = llm,
+            llm = self.llm,
             max_iter = 100,
             verbose = False,
             allow_delegation = False
@@ -85,7 +85,7 @@ class ArticleTopicGenerator:
             role = "Link Collector",
             goal = "To collect all the links of the material that were used as sources by the Topic Researcher",
             backstory = "You will take all the links from the researcher, and show them to the user at the end of the response under the title: 'Resources Used:'",
-            llm = llm,
+            llm = self.llm,
             max_iter = 100,
             verbose = False,
             allow_delegation = False
@@ -95,7 +95,7 @@ class ArticleTopicGenerator:
             role = "Article Prompt Writer",
             goal = f"To take each topic from the {numberOfTopics} topics the Topic Planner has generated, give the condensed article prompt the Summary Generator has generated for the same, and then the links the Link Collector has collected for the same topic, and repeat the steps for the rest of the topics",
             backstory = f"The Topic Planner has sent {numberOfTopics} topics to the Topic Researcher, who sent the information to the Summary Generator and the research links to the Link Collector, who have all sent their information chunks to you, who orders it and shows it to the user.",
-            llm = llm,
+            llm = self.llm,
             max_iter = 100,
             verbose = False,
             allow_delegation = False
