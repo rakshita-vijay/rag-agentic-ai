@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 }  
 
 .stSpinner > div > div {
-    font-size: 40px !important; 
+    font-size: 30px !important; 
 } 
 
 .stButton>button {
