@@ -100,7 +100,9 @@ with st.form("generator_form"):
                 st.markdown(result_data['content'])
                 
                 # Download button
-                filename = f"article_topics_{theme.replace(' ', '_')}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+                ts = datetime.datetime.now()
+                in_ts = f"{ts.day}_{ts.month}_{ts.year}_{ts.hour}_{ts.minute}_{ts.second}"
+                filename = f"article_topics_{theme.replace(' ', '_')}_{in_ts}.md"
                 content_with_header = f"# Theme: {theme}\n\n---\n\n{result_data['content']}"
                 
                 b64 = base64.b64encode(content_with_header.encode()).decode()
