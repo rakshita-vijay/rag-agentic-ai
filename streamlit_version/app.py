@@ -21,7 +21,7 @@ def update_progress():
         if 'message_container' in st.session_state:
             with st.session_state.message_container.container():
                 if 'progress_messages' in st.session_state:
-                    st.markdown("### 🔄 Progress Updates")
+                    # st.markdown("### 🔄 Progress Updates")
                     for msg in st.session_state.progress_messages:
                         st.success(msg) 
                         
