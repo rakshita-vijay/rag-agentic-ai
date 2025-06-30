@@ -95,24 +95,19 @@ with st.form("generator_form"):
         st.session_state.progress_bar = st.progress(0)
         st.session_state.status_text = st.empty()
         st.session_state.message_container = st.container()
+     
         update_progress()
 
         num_topics = random.randint(5, 10)
         st.session_state['num_topics'] = num_topics
 
         st.balloons()
-        st.success(f"🎉 {num_topics} topics will be generated!")
-        # progress_placeholder = st.empty()  
+        st.success(f"🎉 {num_topics} topics will be generated!") 
 
         with st.spinner("🔮 AI agents are working on your request..."):
-            try:
-                # Initial progress display
-                update_progress()
-
-                # Run the async generator
-                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))
-
-                # Final update
+            try: 
+                update_progress() 
+                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback)) 
                 update_progress()
 
                 # Add to history
