@@ -69,10 +69,15 @@ with st.form("generator_form"):
     
     if generate_btn and theme:
         # Clear previous progress messages
-        st.session_state.progress_messages = []
-        
+        st.session_state.progress_messages = [] 
         # Create progress container
         progress_container = st.container()
+        
+        num_topics = random.randint(5, 10)
+        st.session_state['num_topics'] = num_topics
+
+        st.balloons()
+        st.success(f"🎉 {num_topics} topics have been selected!") 
         
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
