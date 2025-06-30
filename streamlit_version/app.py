@@ -89,6 +89,7 @@ with st.form("generator_form"):
     #     falling_speed=3,
     #     animation_length=5000
     # )
+    show_progress()
     
     if generate_btn and theme:
         # Reset state for new generation
