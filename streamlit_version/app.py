@@ -80,11 +80,13 @@ with st.form("generator_form"):
         st.session_state.progress_messages = []
         st.session_state.result_data = None
         
+        # Start generation
+        st.session_state.num_topics = random.randint(5, 10)
+        st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
+        
         # Show initial progress
         show_progress()
         
-        # Start generation
-        st.session_state.num_topics = random.randint(5, 10)
         st.rerun()
 
 # Generation runner
