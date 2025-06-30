@@ -24,10 +24,10 @@ if 'history' not in st.session_state:
     st.session_state.history = []
 if 'notification' not in st.session_state:
     st.session_state.notification = None
-if 'progress' not in st.session_state:
-    st.session_state.progress = {"current": 0, "total": 5}
-if 'progress_messages' not in st.session_state:
-    st.session_state.progress_messages = []
+# if 'progress' not in st.session_state:
+#     st.session_state.progress = {"current": 0, "total": 5}
+# if 'progress_messages' not in st.session_state:
+#     st.session_state.progress_messages = []
 if 'generation_started' not in st.session_state:
     st.session_state.generation_started = False
 if 'result_data' not in st.session_state:
@@ -43,36 +43,25 @@ if not os.environ.get("GOOGLE_API_KEY"):
     st.stop()
 
 # Progress display function
-def show_progress():
-    """Display current progress state"""
-    p = st.session_state.progress
-    progress_pct = int((p["current"] / p["total"]) * 100)
+# def show_progress():
+#     """Display current progress state"""
+#     p = st.session_state.progress
+#     progress_pct = int((p["current"] / p["total"]) * 100)
     
-    # Progress bar
-    st.progress(progress_pct)
+#     # Progress bar
+#     st.progress(progress_pct)
     
-    # Status text
-    # st.write(f"✅ Completed {p['current']}/{p['total']} tasks")
-    # st.session_state.status_text.text(f"✅ Completed {p['current']}/{p['total']} tasks")
-    st.text(f"✅ Completed {p['current']}/{p['total']} tasks")
-    # st.markdown(f'<span style="color: #fff; font-size: 1.05rem; font-family: inherit;">✅ Completed {p["current"]}/{p["total"]} tasks</span>', unsafe_allow_html=True)
+#     # Status text 
+#     st.text(f"✅ Completed {p['current']}/{p['total']} tasks")
     
-    # Messages
-    for msg in st.session_state.progress_messages:
-        st.success(msg)
+#     # Messages
+#     for msg in st.session_state.progress_messages:
+#         st.success(msg)
     
-    # Completion celebration
-    if p["current"] == p["total"] and st.session_state.result_data:
-        st.balloons() 
-        # st.snow()
-        
-        # rain(
-        #     emoji="🎉",
-        #     font_size=60,
-        #     falling_speed=3,
-        #     animation_length=5000
-        # )
-        st.success("🎉 All tasks completed!")
+#     # Completion celebration
+#     if p["current"] == p["total"] and st.session_state.result_data:
+#         st.balloons()  
+#         st.success("🎉 All tasks completed!")
 
 # Main input area
 with st.form("generator_form"):
@@ -80,15 +69,7 @@ with st.form("generator_form"):
     generate_btn = st.form_submit_button("🚀 Generate Topics")
     
     st.session_state.num_topics = random.randint(5, 10) 
-    st.balloons()
-    # st.snow()
-    
-    # rain(
-    #     emoji="🎉",
-    #     font_size=60,
-    #     falling_speed=3,
-    #     animation_length=5000
-    # ) 
+    st.balloons() 
     
     if generate_btn and theme:
         # Reset state for new generation
@@ -101,7 +82,7 @@ with st.form("generator_form"):
         st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
         
         # Show initial progress
-        show_progress()
+        # show_progress()
         
         st.rerun()
 
@@ -127,8 +108,8 @@ if st.session_state.get('generation_started') and not st.session_state.result_da
         st.session_state.generation_started = False
 
 # Show progress if generation started
-if st.session_state.get('generation_started'):
-    show_progress()
+# if st.session_state.get('generation_started'):
+#     show_progress()
 
 # Show results when available
 if st.session_state.get('result_data'):
