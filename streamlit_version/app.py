@@ -78,12 +78,25 @@ with st.form("generator_form"):
         # Clear previous progress messages
         st.session_state.progress_messages = []
 
+        # Initialize progress tracking
+        st.session_state.progress = {"current": 0, "total": 5}  # 5 tasks
+
         num_topics = random.randint(5, 10)
         st.session_state['num_topics'] = num_topics
 
         st.balloons()
-        st.success(f"🎉  {num_topics} topics will be generated!")
+        st.success(f"🎉 {num_topics} topics will be generated!")
         # progress_placeholder = st.empty()
+
+        # Progress bar and status
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+
+        # Update progress display immediately
+        p = st.session_state.progress
+        progress_pct = int((p["current"] / p["total"]) * 100)
+        progress_bar.progress(progress_pct)
+        status_text.text(f"✅ Completed {p['current']}/{p['total']} tasks")
 
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
@@ -111,6 +124,7 @@ with st.form("generator_form"):
                     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
                 st.session_state.history.insert(0, history_item)
+                st.balloons()
                 st.session_state.notification = f"✨ Generated {result_data['topic_count']} topics successfully!"
 
                 # Display results
