@@ -200,7 +200,7 @@ if 'progress_messages' not in st.session_state:
 
 # Notification system
 def show_notification(message, type="success"):
-    js = f'''
+    js = f"""
     <script>
         document.dispatchEvent(new CustomEvent("streamlit:showNotification", {{
             detail: {{
@@ -210,7 +210,7 @@ def show_notification(message, type="success"):
             }}
         }}));
     </script>
-    '''
+    """
     st.components.v1.html(js)
 
 # Progress callback for real-time updates
