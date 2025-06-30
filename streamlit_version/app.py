@@ -57,7 +57,11 @@ def show_progress():
     st.progress(progress_pct)
     
     # Status text
-    st.write(f"✅ Completed {p['current']}/{p['total']} tasks")
+    # st.write(f"✅ Completed {p['current']}/{p['total']} tasks")
+    st.markdown(
+        f'<span style="color: #fff; font-size: 1.05rem; font-family: inherit;">✅ Completed {p["current"]}/{p["total"]} tasks</span>',
+        unsafe_allow_html=True
+    )
     
     # Messages
     for msg in st.session_state.progress_messages:
