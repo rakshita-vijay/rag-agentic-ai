@@ -5,8 +5,16 @@ import base64
 import asyncio
 import os
 import styles
-import scripts
-from generator import generate_article_topics
+import scripts 
+
+try:
+    from generator import generate_article_topics
+    GENERATOR_AVAILABLE = True
+except ImportError as e:
+    GENERATOR_AVAILABLE = False
+    st.error(f"Missing dependencies: {e}")
+    st.info("Please ensure requirements.txt includes all dependencies")
+    st.stop()
 
 # Apply custom styles
 st.markdown(styles.STYLES, unsafe_allow_html=True)
