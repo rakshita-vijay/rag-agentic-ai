@@ -5,15 +5,26 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os, sys, datetime, uuid, asyncio, base64, random
 import styles, scripts # custom modules
 
-import streamlit as st
-
-def monitor_progress():
-    """Display progress messages as they come in"""
-    if 'progress_messages' in st.session_state and st.session_state.progress_messages:
-        st.markdown("### 🔄 Progress Updates")
-        for i, msg in enumerate(st.session_state.progress_messages):
-            st.success(msg)
-
+import streamlit as st 
+ 
+def update_progress():
+    if 'progress' in st.session_state:
+        p = st.session_state.progress
+        progress_pct = int((p["current"] / p["total"]) * 100)
+        
+        # Update progress bar and status
+        if 'progress_bar' in st.session_state and 'status_text' in st.session_state:
+            st.session_state.progress_bar.progress(progress_pct)
+            st.session_state.status_text.text(f"✅ Completed {p['current']}/{p['total']} tasks")
+        
+        # Update messages
+        if 'message_container' in st.session_state:
+            with st.session_state.message_container.container():
+                if 'progress_messages' in st.session_state:
+                    st.markdown("### 🔄 Progress Updates")
+                    for msg in st.session_state.progress_messages:
+                        st.success(msg) 
+                        
 try:
     from generator import generate_article_topics
     GENERATOR_AVAILABLE = True
@@ -80,40 +91,29 @@ with st.form("generator_form"):
 
         # Initialize progress tracking
         st.session_state.progress = {"current": 0, "total": 5}  # 5 tasks
+ 
+        st.session_state.progress_bar = st.progress(0)
+        st.session_state.status_text = st.empty()
+        st.session_state.message_container = st.container()
+        update_progress()
 
         num_topics = random.randint(5, 10)
         st.session_state['num_topics'] = num_topics
 
         st.balloons()
         st.success(f"🎉 {num_topics} topics will be generated!")
-        # progress_placeholder = st.empty()
-
-        # Progress bar and status
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-
-        # Update progress display immediately
-        p = st.session_state.progress
-        progress_pct = int((p["current"] / p["total"]) * 100)
-        progress_bar.progress(progress_pct)
-        status_text.text(f"✅ Completed {p['current']}/{p['total']} tasks")
+        # progress_placeholder = st.empty()  
 
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
-                # Function to update progress display
-                def update_progress_display():
-                    with st.container():
-                        for msg in st.session_state.get('progress_messages', []):
-                            st.success(msg)
-
                 # Initial progress display
-                update_progress_display()
+                update_progress()
 
                 # Run the async generator
                 result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))
 
                 # Final update
-                update_progress_display()
+                update_progress()
 
                 # Add to history
                 history_item = {
@@ -123,9 +123,12 @@ with st.form("generator_form"):
                     "topic_count": result_data['topic_count'],
                     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
+                update_progress()
                 st.session_state.history.insert(0, history_item)
+                update_progress()
                 st.balloons()
                 st.session_state.notification = f"✨ Generated {result_data['topic_count']} topics successfully!"
+                update_progress()
 
                 # Display results
                 st.markdown("### 📝 Generated Topics")
