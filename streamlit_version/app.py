@@ -34,7 +34,7 @@ if 'result_data' not in st.session_state:
     st.session_state.result_data = None
 
 # UI Components
-st.title("✨ AI Article Topic Generator <3")
+st.title("✨ AI Article Topic Generator")
 st.subheader("Create engaging article topics with AI")
 
 # API Key check
