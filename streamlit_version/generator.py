@@ -54,8 +54,8 @@ class ArticleTopicGenerator:
         """Create all the CrewAI agents""" 
         self.planner = Agent(
             role = "Topic Planner",
-            goal = f"To collect {number_of_topics} engaging topics related to the theme: {theam}, addressed to an academic audience",
-            backstory = f"You have been given a theme - {theam} - and you must collect {number_of_topics} topics related to the theme, for people to write articles about. It can be in-depth core topics related to the theme, or informatory topics as well. Your work is the basis for the user to write an article (college graduate level) on these topics.",
+            goal = f"To collect {number_of_topics} engaging topics related to the theme: {theme}, addressed to an academic audience",
+            backstory = f"You have been given a theme - {theme} - and you must collect {number_of_topics} topics related to the theme, for people to write articles about. It can be in-depth core topics related to the theme, or informatory topics as well. Your work is the basis for the user to write an article (college graduate level) on these topics.",
             llm = self.llm,
             max_iter = 100,
             verbose = False,
@@ -64,7 +64,7 @@ class ArticleTopicGenerator:
         
         self.researcher = Agent(
             role = "Topic Researcher",
-            goal = f"To collect in-depth information (and their sources) on the {number_of_topics} {theam}-related topics provided by the Topic Planner",
+            goal = f"To collect in-depth information (and their sources) on the {number_of_topics} {theme}-related topics provided by the Topic Planner",
             backstory = f"For each topic given by the Topic Planner, you will do in-depth research into each, collect information and their source links, and send the links to the Link Collector. Also, you send the relevant informaton you have collected to the Summary Generator.",
             llm = self.llm,
             max_iter = 100,
@@ -108,16 +108,16 @@ class ArticleTopicGenerator:
             name='Planning',
             agent = self.planner,
             description = f'''
-            1. Identify the latest trends related to {theam}, along with key players and noteworthy news  
-            2. Identify the target audience based on {theam} and collect relevant headlines/topics 
-            3. Develop a {theam}-related title list of {number_of_topics} items 
+            1. Identify the latest trends related to {theme}, along with key players and noteworthy news  
+            2. Identify the target audience based on {theme} and collect relevant headlines/topics 
+            3. Develop a {theme}-related title list of {number_of_topics} items 
             4. Format the output as a numbered list with no additional commentary 
             5. Example: 
                 1. Topic One 
                 2. Topic Two 
                 3. Topic Three
             6. Send the list to the Topic Researcher''',
-            expected_output=f"A {number_of_topics}-item numbered list of {theam}-related topics with no extra text"
+            expected_output=f"A {number_of_topics}-item numbered list of {theme}-related topics with no extra text"
         )
         
         self.research = Task(
