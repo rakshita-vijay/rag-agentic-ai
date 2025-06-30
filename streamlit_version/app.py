@@ -142,7 +142,7 @@ if st.session_state.get('result_data'):
     filename = f"article_topics_{theme.replace(' ', '_')}_{in_ts}.md"
      
     b64 = base64.b64encode(data['content'].encode()).decode()
-    href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold;">📥 Download Topics</a>'
+    href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold;"> 📥 Download Topics </a>'
     st.markdown(href, unsafe_allow_html=True)
     
     # Add to history
@@ -174,10 +174,14 @@ if st.session_state.history:
             
                 col1, col2 = st.columns(2)
                 with col1:
+                    ts = datetime.datetime.now()
+                    in_ts = f"{ts.day}_{ts.month}_{ts.year}_{ts.hour}_{ts.minute}_{ts.second}"
+                    fn = f"article_topics_{theme.replace(' ', '_')}_{in_ts}.md"
+                    
                     st.download_button(
-                        label="Download",
+                        label="📥 Download",
                         data=item['content'],
-                        file_name=f"{item['theme'].replace(' ', '_')}_{item['timestamp'].replace(':','-').replace(' ','_')}.md",
+                        file_name=fn,
                         mime="text/markdown",
                         key=f"download_{item['id']}",
                         use_container_width=True
