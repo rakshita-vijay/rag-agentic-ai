@@ -159,6 +159,5 @@ else:
 # Add custom notification component
 st.markdown(scripts.NOTIFICATION_SCRIPT, unsafe_allow_html=True)
 
-# Footer
-st.markdown("---")
+# Footer 
 st.markdown("🤖 Powered by CrewAI & Gemini 2.0 Flash")
