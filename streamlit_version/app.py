@@ -64,7 +64,8 @@ def show_progress():
     # Completion celebration
     if p["current"] == p["total"] and st.session_state.result_data:
         st.balloons() 
-        st.snow()
+        # st.snow()
+        
         # rain(
         #     emoji="🎉",
         #     font_size=60,
@@ -80,7 +81,8 @@ with st.form("generator_form"):
     
     st.session_state.num_topics = random.randint(5, 10) 
     st.balloons()
-    st.snow()
+    # st.snow()
+    
     # rain(
     #     emoji="🎉",
     #     font_size=60,
