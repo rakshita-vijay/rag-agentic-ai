@@ -256,7 +256,7 @@ class ArticleTopicGenerator:
             raise e
 
 # Convenience function for direct usage
-async def generate_article_topics(theme, progress_callback=None):
+async def generate_article_topics(theme, num_topics, progress_callback=None):
     """Convenience function to generate topics"""
     generator = ArticleTopicGenerator()
-    return await generator.generate_topics(theme, progress_callback)
+    return await generator.generate_topics(theme, num_topics, progress_callback)
