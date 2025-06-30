@@ -76,16 +76,24 @@ with st.form("generator_form"):
 
         st.balloons()
         st.success(f"🎉  {num_topics} topics will be generated!") 
-        
+        progress_placeholder = st.empty()
+
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
-                # Run the async generator
-                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback)) 
+                # Function to update progress display 
+                def update_progress_display():
+                    with progress_placeholder.container():
+                        for msg in st.session_state.get('progress_messages', []):
+                            st.success(msg)
                 
-                # Display progress messages
-                with st.container():
-                    for msg in st.session_state.progress_messages:
-                        st.success(msg)
+                # Initial progress display
+                update_progress_display()
+                
+                # Run the async generator
+                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))
+                
+                # Final update
+                update_progress_display()
                 
                 # Add to history
                 history_item = {
