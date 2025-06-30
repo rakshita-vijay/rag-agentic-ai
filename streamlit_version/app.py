@@ -67,7 +67,7 @@ def show_progress():
         rain(
             emoji="🎉",
             font_size=54,
-            falling_speed=100,
+            falling_speed=1,
             animation_length="infinite"
         )
         st.success("🎉 All tasks completed!")
@@ -82,7 +82,7 @@ with st.form("generator_form"):
     rain(
         emoji="🎉",
         font_size=54,
-        falling_speed=100,
+        falling_speed=1,
         animation_length="infinite"
     )
     
