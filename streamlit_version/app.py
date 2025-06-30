@@ -5,6 +5,8 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os, asyncio, random, uuid, datetime, base64, styles, scripts
 import streamlit as st
 
+from styles import STYLES
+
 # from streamlit_extras.let_it_rain import rain 
 
 try:
@@ -17,7 +19,7 @@ except ImportError as e:
     st.stop()
 
 # Apply custom styles
-st.markdown(styles.STYLES, unsafe_allow_html=True) 
+# st.markdown(styles.STYLES, unsafe_allow_html=True) 
 
 # Initialize session state
 if 'history' not in st.session_state:
