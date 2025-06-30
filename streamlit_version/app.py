@@ -66,9 +66,9 @@ def show_progress():
         st.balloons() 
         rain(
             emoji="🎉",
-            font_size=54,
+            font_size=60,
             falling_speed=3,
-            animation_length=2000
+            animation_length=5000
         )
         st.success("🎉 All tasks completed!")
 
@@ -81,9 +81,9 @@ with st.form("generator_form"):
     st.balloons()
     rain(
         emoji="🎉",
-        font_size=54,
+        font_size=60,
         falling_speed=3,
-        animation_length=2000
+        animation_length=5000
     )
     
     if generate_btn and theme:
