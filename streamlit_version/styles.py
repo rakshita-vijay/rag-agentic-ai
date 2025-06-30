@@ -76,6 +76,23 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.1);
 }
 
+.stDownloadButton button {
+    background-color: #5e35b1 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    border: 2px solid #9a7bff !important;
+    font-family: 'Comic Neue', cursive !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease;
+    padding: 0.4em 1.2em !important;
+}
+
+.stDownloadButton button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #9a7bff;
+    background-color: #7c4dff !important;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
