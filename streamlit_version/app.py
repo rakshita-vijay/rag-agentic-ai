@@ -1,15 +1,6 @@
 __import__('pysqlite3')
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
-import streamlit as st
-import datetime
-import uuid
-import base64
-import asyncio
-import os
-import styles
-import scripts 
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
 try:
     from generator import generate_article_topics
