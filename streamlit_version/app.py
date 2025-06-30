@@ -161,12 +161,40 @@ if st.session_state.get('result_data'):
 st.sidebar.title("📚 Generation History")
 if st.session_state.history:
     for item in st.session_state.history[:5]:
-        with st.sidebar.expander(f"{item['theme']} ({item['topic_count']} topics)"):
-            st.markdown(f"**Generated:** {item['timestamp']}")
-            st.markdown(f"**Preview:** {item['content'][:100]}...")
-            if st.button("🗑️ Delete", key=f"delete_{item['id']}"):
-                st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
-                st.rerun()
+        expander_label = f"{item['theme']} ({item['topic_count']} topics)"
+        with st.sidebar.expander(expander_label):
+            expanded_key = f"expanded_{item['id']}"
+            if expanded_key not in st.session_state:
+                st.session_state[expanded_key] = False
+
+            # Show preview or full content based on expanded state
+            if not st.session_state[expanded_key]:
+                st.markdown(f"**Generated:** {item['timestamp']}")
+                st.markdown(f"**Preview:** {item['content'][:200]}...")
+
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("🔎 Expand", key=f"expand_{item['id']}", use_container_width=True):
+                        st.session_state[expanded_key] = True
+                        st.rerun()
+                with col2:
+                    if st.button("🗑️ Delete", key=f"delete_{item['id']}", use_container_width=True):
+                        st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
+                        st.rerun()
+            else:
+                st.markdown(f"**Generated:** {item['timestamp']}")
+                st.markdown("**Full Content:**")
+                st.markdown(item['content'])
+
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("🔙 Collapse", key=f"collapse_{item['id']}", use_container_width=True):
+                        st.session_state[expanded_key] = False
+                        st.rerun()
+                with col2:
+                    if st.button("🗑️ Delete", key=f"delete_{item['id']}_expanded", use_container_width=True):
+                        st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
+                        st.rerun()
 else:
     st.sidebar.info("No history yet")
 
