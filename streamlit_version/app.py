@@ -1,19 +1,19 @@
 __import__('pysqlite3')
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import os, sys, datetime, uuid, asyncio, base64, random
 import styles, scripts # custom modules
 
-import streamlit as st 
- 
+import streamlit as st
+
 def monitor_progress():
     """Display progress messages as they come in"""
     if 'progress_messages' in st.session_state and st.session_state.progress_messages:
         st.markdown("### 🔄 Progress Updates")
         for i, msg in enumerate(st.session_state.progress_messages):
             st.success(msg)
-            
+
 try:
     from generator import generate_article_topics
     GENERATOR_AVAILABLE = True
@@ -68,40 +68,40 @@ if not os.environ.get("GOOGLE_API_KEY"):
 # Main input area
 with st.form("generator_form"):
     theme = st.text_input(
-        "Enter your theme:", 
+        "Enter your theme:",
         placeholder="e.g., Artificial Intelligence in Healthcare",
         help="Be specific for better results"
     )
     generate_btn = st.form_submit_button("🚀 Generate Topics with AI")
-    
+
     if generate_btn and theme:
         # Clear previous progress messages
-        st.session_state.progress_messages = []  
-        
+        st.session_state.progress_messages = []
+
         num_topics = random.randint(5, 10)
         st.session_state['num_topics'] = num_topics
 
         st.balloons()
-        st.success(f"🎉  {num_topics} topics will be generated!") 
+        st.success(f"🎉  {num_topics} topics will be generated!")
         progress_placeholder = st.empty()
 
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
-                # Function to update progress display 
+                # Function to update progress display
                 def update_progress_display():
                     with progress_placeholder.container():
                         for msg in st.session_state.get('progress_messages', []):
                             st.success(msg)
-                
+
                 # Initial progress display
                 update_progress_display()
-                
+
                 # Run the async generator
                 result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))
-                
+
                 # Final update
                 update_progress_display()
-                
+
                 # Add to history
                 history_item = {
                     "id": str(uuid.uuid4()),
@@ -112,21 +112,21 @@ with st.form("generator_form"):
                 }
                 st.session_state.history.insert(0, history_item)
                 st.session_state.notification = f"✨ Generated {result_data['topic_count']} topics successfully!"
-                
+
                 # Display results
                 st.markdown("### 📝 Generated Topics")
                 st.markdown(result_data['content'])
-                
+
                 # Download button
                 ts = datetime.datetime.now()
                 in_ts = f"{ts.day}_{ts.month}_{ts.year}_{ts.hour}_{ts.minute}_{ts.second}"
                 filename = f"article_topics_{theme.replace(' ', '_')}_{in_ts}.md"
                 content_with_header = f"# Theme: {theme}\n\n---\n\n{result_data['content']}"
-                
+
                 b64 = base64.b64encode(content_with_header.encode()).decode()
                 href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold; font-size: 18px; text-decoration: none;">📥 Download Topics as Markdown</a>'
                 st.markdown(href, unsafe_allow_html=True)
-                
+
             except Exception as e:
                 st.error(f"❌ Error generating topics: {str(e)}")
                 st.info("Please check your API key and try again.")
@@ -150,7 +150,7 @@ else:
             # Show first 200 characters
             preview = item['content'][:200] + "..." if len(item['content']) > 200 else item['content']
             st.markdown(preview)
-            
+
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("📖 View Full", key=f"view_{item['id']}", use_container_width=True):
@@ -160,7 +160,7 @@ else:
                     st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
                     st.session_state.notification = "🗑️ History item deleted!"
                     st.rerun()
-            
+
             # Show full content if requested
             if st.session_state.get(f"show_full_{item['id']}", False):
                 st.markdown("**Full Content:**")
@@ -172,5 +172,5 @@ else:
 # Add custom notification component
 st.markdown(scripts.NOTIFICATION_SCRIPT, unsafe_allow_html=True)
 
-# Footer 
+# Footer
 st.markdown("🤖 Powered by CrewAI & Gemini 2.0 Flash")
