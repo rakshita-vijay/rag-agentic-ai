@@ -105,7 +105,7 @@ class ArticleTopicGenerator:
         """Create all the tasks for the agents""" 
         self.plan = Task(
             name='Planning',
-            agent = planner,
+            agent = self.planner,
             description = f'''
             1. Identify the latest trends related to {theam}, along with key players and noteworthy news  
             2. Identify the target audience based on {theam} and collect relevant headlines/topics 
@@ -121,7 +121,7 @@ class ArticleTopicGenerator:
         
         self.research = Task(
             name='Researching',
-            agent=researcher,
+            agent = self.researcher,
             description=f'''
             For each topic received from the Topic Planner:
             1. Conduct in-depth research on the topic
@@ -147,7 +147,7 @@ class ArticleTopicGenerator:
         
         self.textCondense = Task(
             name='Condensing',
-            agent=condenser,
+            agent=self.condenser,
             description=f'''
             1. Receive research content from Topic Researcher
             2. For each logical chunk:
@@ -166,7 +166,7 @@ class ArticleTopicGenerator:
         
         self.linkCollection = Task(
             name='Link Collecting',
-            agent=collector,
+            agent=self.collector,
             description=f'''
             1. Collect all source links from Topic Researcher
             2. Format as:
@@ -183,7 +183,7 @@ class ArticleTopicGenerator:
         
         self.chunkJoin = Task(
             name='Joining, Formatting, and Writing',
-            agent=writer,
+            agent=self.writer,
             description=f'''
             For each of the {numberOfTopics} topics:
             1. Start with H2 heading: "## [Topic Name]"
@@ -223,6 +223,7 @@ class ArticleTopicGenerator:
                 tasks=[self.plan, self.research, self.textCondense, self.linkCollection, self.chunkJoin],
                 process="sequential",
                 verbose=False, 
+                memory=False, 
                 share_crew=True,
                 planning=False,
                 chat_llm=self.llm
