@@ -67,7 +67,7 @@ def progress_callback(message):
     st.session_state.progress_messages.append(message)
 
 # UI Components
-st.title("✨ AI Article Topic Generator :)")
+st.title("✨ AI Article Topic Generator !!!")
 st.subheader("Create engaging article topics with AI")
 
 # API Key check
@@ -105,10 +105,8 @@ with st.form("generator_form"):
         st.success(f"🎉 {num_topics} topics will be generated!") 
 
         with st.spinner("🔮 AI agents are working on your request..."):
-            try: 
-                update_progress() 
-                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback)) 
-                update_progress()
+            try:  
+                result_data = asyncio.run(generate_article_topics(theme, num_topics, progress_callback))  
 
                 # Add to history
                 history_item = {
@@ -117,13 +115,11 @@ with st.form("generator_form"):
                     "content": result_data['content'],
                     "topic_count": result_data['topic_count'],
                     "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                }
-                update_progress()
-                st.session_state.history.insert(0, history_item)
-                update_progress()
+                } 
+                st.session_state.history.insert(0, history_item) 
+             
                 st.balloons()
-                st.session_state.notification = f"✨ Generated {result_data['topic_count']} topics successfully!"
-                update_progress()
+                st.session_state.notification = f"✨ Generated {result_data['topic_count']} topics successfully!" 
 
                 # Display results
                 st.markdown("### 📝 Generated Topics")
