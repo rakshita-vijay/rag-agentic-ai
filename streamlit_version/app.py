@@ -57,7 +57,7 @@ def show_progress():
     st.progress(progress_pct)
     
     # Status text
-    st.subheader(f"✅ Completed {p['current']}/{p['total']} tasks")
+    st.write(f"✅ Completed {p['current']}/{p['total']} tasks")
     
     # Messages
     for msg in st.session_state.progress_messages:
@@ -73,8 +73,7 @@ with st.form("generator_form"):
     theme = st.text_input("Enter theme:", placeholder="e.g., Artificial Intelligence")
     generate_btn = st.form_submit_button("🚀 Generate Topics")
     
-    st.session_state.num_topics = random.randint(5, 10)
-    
+    st.session_state.num_topics = random.randint(5, 10) 
     
     if generate_btn and theme:
         # Reset state for new generation
