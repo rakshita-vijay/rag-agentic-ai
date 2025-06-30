@@ -20,15 +20,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Press Start 2P', cursive;
     color: var(--primary) !important;
     text-shadow: 0 0 10px rgba(154, 123, 255, 0.7);
-} 
+}  
 
-.streamlit-spinner > div > div {
+stSpinner {
     width: 40px !important;
     height: 40px !important;
     border-width: 10px !important;
 }
 
-.stSpinner, .stSpinner > div, .stSpinner > div > div {
+.stSpinner > div, .stSpinner > div > div {
     font-size: 45px !important; 
 }
 
