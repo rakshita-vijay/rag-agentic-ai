@@ -206,15 +206,13 @@ class ArticleTopicGenerator:
         try: 
             if progress_callback:
                 progress_callback(f"🎯 Planning {number_of_topics} topics for: {theme}")
-            
-            # Create agents and tasks
+             
             self.create_agents(theme, number_of_topics)
             self.create_tasks(theme, number_of_topics)
             
             if progress_callback:
                 progress_callback("🤖 Assembling AI agents...")
-            
-            # Create crew
+             
             crew = Crew(
                 agents=[self.planner, self.researcher, self.condenser, self.collector, self.writer],
                 tasks=[self.plan, self.research, self.textCondense, self.linkCollection, self.chunkJoin],
