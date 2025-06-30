@@ -171,16 +171,22 @@ if st.session_state.history:
             if not st.session_state[expanded_key]:
                 st.markdown(f"**Generated:** {item['timestamp']}")
                 st.markdown(f"**Preview:** {item['content'][:200]}...")
-
+            
                 col1, col2 = st.columns(2)
                 with col1:
-                    if st.button("🔎 Expand", key=f"expand_{item['id']}", use_container_width=True):
-                        st.session_state[expanded_key] = True
-                        st.rerun()
+                    st.download_button(
+                        label="Download",
+                        data=item['content'],
+                        file_name=f"{item['theme'].replace(' ', '_')}_{item['timestamp'].replace(':','-').replace(' ','_')}.md",
+                        mime="text/markdown",
+                        key=f"download_{item['id']}",
+                        use_container_width=True
+                    )
                 with col2:
                     if st.button("🗑️ Delete", key=f"delete_{item['id']}", use_container_width=True):
                         st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
                         st.rerun()
+
             else:
                 st.markdown(f"**Generated:** {item['timestamp']}")
                 st.markdown("**Full Content:**")
