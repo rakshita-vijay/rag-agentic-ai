@@ -2,6 +2,157 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+import os
+import streamlit as st
+import asyncio
+import random
+import uuid
+import datetime
+import base64
+import styles
+import scripts
+
+# Apply custom styles
+st.markdown(styles.STYLES, unsafe_allow_html=True)
+
+# Initialize session state
+if 'history' not in st.session_state:
+    st.session_state.history = []
+if 'notification' not in st.session_state:
+    st.session_state.notification = None
+if 'progress' not in st.session_state:
+    st.session_state.progress = {"current": 0, "total": 5}
+if 'progress_messages' not in st.session_state:
+    st.session_state.progress_messages = []
+if 'generation_started' not in st.session_state:
+    st.session_state.generation_started = False
+if 'result_data' not in st.session_state:
+    st.session_state.result_data = None
+
+# UI Components
+st.title("✨ AI Article Topic Generator")
+st.subheader("Create engaging article topics with AI")
+
+# API Key check
+if not os.environ.get("GOOGLE_API_KEY"):
+    st.error("🔑 GOOGLE_API_KEY not set. Add it in Streamlit Secrets")
+    st.stop()
+
+# Progress display function
+def show_progress():
+    """Display current progress state"""
+    p = st.session_state.progress
+    progress_pct = int((p["current"] / p["total"]) * 100)
+    
+    # Progress bar
+    st.progress(progress_pct)
+    
+    # Status text
+    st.subheader(f"✅ Completed {p['current']}/{p['total']} tasks")
+    
+    # Messages
+    for msg in st.session_state.progress_messages:
+        st.success(msg)
+    
+    # Completion celebration
+    if p["current"] == p["total"] and st.session_state.result_data:
+        st.balloons()
+        st.success("🎉 All tasks completed!")
+
+# Main input area
+with st.form("generator_form"):
+    theme = st.text_input("Enter theme:", placeholder="e.g., Artificial Intelligence")
+    generate_btn = st.form_submit_button("🚀 Generate Topics")
+    
+    if generate_btn and theme:
+        # Reset state for new generation
+        st.session_state.generation_started = True
+        st.session_state.progress = {"current": 0, "total": 5}
+        st.session_state.progress_messages = []
+        st.session_state.result_data = None
+        
+        # Show initial progress
+        show_progress()
+        
+        # Start generation
+        st.session_state.num_topics = random.randint(5, 10)
+        st.rerun()
+
+# Generation runner
+if st.session_state.get('generation_started') and not st.session_state.result_data:
+    try:
+        # Show spinner while working
+        with st.spinner("🔮 AI agents are working..."):
+            result = asyncio.run(
+                generate_article_topics(
+                    theme,
+                    st.session_state.num_topics
+                )
+            )
+            st.session_state.result_data = {
+                'content': result.raw,
+                'theme': theme,
+                'topic_count': st.session_state.num_topics,
+                'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            }
+    except Exception as e:
+        st.error(f"❌ Error: {str(e)}")
+        st.session_state.generation_started = False
+
+# Show progress if generation started
+if st.session_state.get('generation_started'):
+    show_progress()
+
+# Show results when available
+if st.session_state.get('result_data'):
+    data = st.session_state.result_data
+    st.markdown("### 📝 Generated Topics")
+    st.markdown(data['content'])
+    
+    # Download button
+    filename = f"topics_{data['theme']}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+    b64 = base64.b64encode(data['content'].encode()).decode()
+    href = f'<a href="data:file/md;base64,{b64}" download="{filename}" style="color: #9a7bff; font-weight: bold;">📥 Download Topics</a>'
+    st.markdown(href, unsafe_allow_html=True)
+    
+    # Add to history
+    st.session_state.history.insert(0, {
+        "id": str(uuid.uuid4()),
+        "theme": data['theme'],
+        "content": data['content'],
+        "topic_count": data['topic_count'],
+        "timestamp": data['timestamp']
+    })
+    
+    # Reset flags
+    st.session_state.generation_started = False
+
+# History sidebar
+st.sidebar.title("📚 Generation History")
+if st.session_state.history:
+    for item in st.session_state.history[:5]:
+        with st.sidebar.expander(f"{item['theme']} ({item['topic_count']} topics)"):
+            st.markdown(f"**Generated:** {item['timestamp']}")
+            st.markdown(f"**Preview:** {item['content'][:100]}...")
+            if st.button("🗑️ Delete", key=f"delete_{item['id']}"):
+                st.session_state.history = [h for h in st.session_state.history if h['id'] != item['id']]
+                st.rerun()
+else:
+    st.sidebar.info("No history yet")
+
+# Add custom notification component
+st.markdown(scripts.NOTIFICATION_SCRIPT, unsafe_allow_html=True)
+
+# Footer
+st.markdown("---")
+st.markdown("🤖 Powered by CrewAI & Gemini 2.0 Flash")
+
+
+'''
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import os, sys, datetime, uuid, asyncio, base64, random
 import styles, scripts # custom modules
 
@@ -183,3 +334,4 @@ st.markdown(scripts.NOTIFICATION_SCRIPT, unsafe_allow_html=True)
 
 # Footer
 st.markdown("🤖 Powered by CrewAI & Gemini 2.0 Flash")
+'''
