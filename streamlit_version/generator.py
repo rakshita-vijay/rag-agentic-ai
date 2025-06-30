@@ -4,7 +4,22 @@ import subprocess
 import warnings
 import asyncio
 from random import randint
-from crewai import Agent, Task, Crew, LLM
+# from crewai import Agent, Task, Crew, LLM
+
+try:
+    # import crewai
+    from crewai import Agent, Task, Crew, LLM
+except ImportError:
+    print("CrewAI not found. Installing...")
+    try:
+        # Use pip to install CrewAI
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "crewai"])
+        # import crewai
+        from crewai import Agent, Task, Crew, LLM
+        print("CrewAI installed successfully")
+    except subprocess.CalledProcessError as e:
+        print(f"Installation failed: {e}")
+        sys.exit(1)
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
