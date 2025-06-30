@@ -47,27 +47,8 @@ class ArticleTopicGenerator:
             model="gemini/gemini-2.0-flash",
             temperature=0.8,
             api_key=GOOGLE_API_KEY
-        )
-
-    def task_callback(self, output):
-        """Callback function executed after each task completes"""
-        import streamlit as st
+        ) 
         
-        # Initialize progress messages if not exists
-        if 'progress_messages' not in st.session_state:
-            st.session_state.progress_messages = []
-        
-        # Get task name/description
-        task_name = getattr(output, 'name', 'Unknown Task')
-        if not task_name or task_name == 'Unknown Task':
-            task_name = getattr(output, 'description', 'Unknown Task')[:50] + "..."
-        
-        # Add completion message
-        st.session_state.progress_messages.append(f"✅ {task_name} completed!")
-        
-        # Force UI update
-        st.rerun()
-    
     def create_agents(self, theme, number_of_topics):
         """Create all the CrewAI agents""" 
         self.planner = Agent(
