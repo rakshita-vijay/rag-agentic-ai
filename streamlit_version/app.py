@@ -68,7 +68,7 @@ def show_progress():
             emoji="🎉",
             font_size=54,
             falling_speed=3,
-            animation_length="infinite"
+            animation_length=2000
         )
         st.success("🎉 All tasks completed!")
 
@@ -83,7 +83,7 @@ with st.form("generator_form"):
         emoji="🎉",
         font_size=54,
         falling_speed=3,
-        animation_length="infinite"
+        animation_length=2000
     )
     
     if generate_btn and theme:
