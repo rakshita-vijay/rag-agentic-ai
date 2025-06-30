@@ -85,7 +85,7 @@ with st.form("generator_form"):
         st.session_state.progress = {"current": 0, "total": 5}
         st.session_state.progress_messages = []
         st.session_state.result_data = None 
-        st.balloons()
+        # st.balloons()
         st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
         
         # Show initial progress
