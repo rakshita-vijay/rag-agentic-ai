@@ -77,6 +77,7 @@ with st.form("generator_form"):
     generate_btn = st.form_submit_button("🚀 Generate Topics")
     
     st.session_state.num_topics = random.randint(5, 10) 
+    st.balloons()
     
     if generate_btn and theme:
         # Reset state for new generation
