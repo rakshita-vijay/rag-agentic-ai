@@ -18,6 +18,26 @@ except ImportError as e:
 
 # Apply custom styles
 st.markdown(styles.STYLES, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+    /* Style all download buttons the same way as .delete-btn */
+    .stDownloadButton button {
+        background-color: #5e35b1 !important;
+        color: white !important;
+        border-radius: 20px !important;
+        border: 2px solid #9a7bff !important;
+        font-family: 'Comic Neue', cursive !important;
+        font-weight: 700 !important;
+        transition: all 0.3s ease;
+        padding: 0.4em 1.2em !important;
+    }
+    .stDownloadButton button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #9a7bff;
+        background-color: #7c4dff !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # Initialize session state
 if 'history' not in st.session_state:
