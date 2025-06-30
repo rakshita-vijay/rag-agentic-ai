@@ -83,13 +83,13 @@ with st.form("generator_form"):
 
         st.balloons()
         st.success(f"🎉  {num_topics} topics will be generated!")
-        progress_placeholder = st.empty()
+        # progress_placeholder = st.empty()
 
         with st.spinner("🔮 AI agents are working on your request..."):
             try:
                 # Function to update progress display
                 def update_progress_display():
-                    with progress_placeholder.container():
+                    with st.container():
                         for msg in st.session_state.get('progress_messages', []):
                             st.success(msg)
 
