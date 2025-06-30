@@ -2,7 +2,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 
-import os, sys, datetime, uuid, asyncio
+import os, sys, datetime, uuid, asyncio, base64
 import styles, scripts # custom modules
 
 import streamlit as st 
