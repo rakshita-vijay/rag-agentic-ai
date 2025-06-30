@@ -202,12 +202,9 @@ class ArticleTopicGenerator:
             expected_output=f"Structured output with headings, bullet points, and exact links for all topics"
         )
     
-    async def generate_topics(self, theme, progress_callback=None):
+    async def generate_topics(self, theme, number_of_topics, progress_callback=None):
         """Generate article topics using CrewAI agents"""
-        try:
-            # Generate random number of topics
-            number_of_topics = randint(5, 9)
-            
+        try: 
             if progress_callback:
                 progress_callback(f"🎯 Planning {number_of_topics} topics for: {theme}")
             
