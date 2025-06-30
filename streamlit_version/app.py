@@ -72,8 +72,9 @@ def show_progress():
 with st.form("generator_form"):
     theme = st.text_input("Enter theme:", placeholder="e.g., Artificial Intelligence")
     generate_btn = st.form_submit_button("🚀 Generate Topics")
+    
     st.session_state.num_topics = random.randint(5, 10)
-    st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
+    
     
     if generate_btn and theme:
         # Reset state for new generation
@@ -81,6 +82,7 @@ with st.form("generator_form"):
         st.session_state.progress = {"current": 0, "total": 5}
         st.session_state.progress_messages = []
         st.session_state.result_data = None 
+        st.success(f"🎉 {st.session_state.num_topics} topics will be generated!")
         
         # Show initial progress
         show_progress()
