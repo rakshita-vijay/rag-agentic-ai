@@ -6,7 +6,14 @@ import os, sys, datetime, uuid, asyncio, base64, random
 import styles, scripts # custom modules
 
 import streamlit as st 
-
+ 
+def monitor_progress():
+    """Display progress messages as they come in"""
+    if 'progress_messages' in st.session_state and st.session_state.progress_messages:
+        st.markdown("### 🔄 Progress Updates")
+        for i, msg in enumerate(st.session_state.progress_messages):
+            st.success(msg)
+            
 try:
     from generator import generate_article_topics
     GENERATOR_AVAILABLE = True
