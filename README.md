@@ -1,5 +1,3 @@
-Here's the fully updated README reflecting your current Streamlit app:
-
 # Article Topic Generator with CrewAI 
 
 This project is an **interactive web app** that uses CrewAI agents to:
@@ -9,6 +7,8 @@ This project is an **interactive web app** that uses CrewAI agents to:
 4. Provide real-time progress tracking and downloadable results 📥
 
 The system uses **Gemini 2.0 Flash** as its language model and features a modern Streamlit UI with custom styling and animations.
+
+---
 
 ## Overview
 
@@ -90,7 +90,21 @@ https://agentic-ai-article-title-generator.streamlit.app/
 4. **History Management**:
    - Previous generations in sidebar 📚
    - Expand to preview, download, or delete 🗑️
-
+```mermaid
+graph TD
+    A[User Input Theme] --> B(Random Topic Count: 5-10)
+    B --> C[Agent Assembly]
+    C --> D[Planner: Generate Topics]
+    D --> E[Researcher: Gather Information]
+    E --> F[Condenser: Summarize Content]
+    F --> G[Collector: Compile Resources]
+    G --> H[Writer: Format Output]
+    H --> I[Streamlit UI]
+    I --> J[Download Markdown]
+    I --> K[History Storage]
+    style A fill:#9a7bff,stroke:#5e35b1
+    style J fill:#7c4dff,stroke:#5e35b1
+```
 ## Agent Architecture
 | Agent | Role | Key Function | Emoji |
 |-------|------|-------------|-------|
@@ -115,6 +129,4 @@ https://agentic-ai-article-title-generator.streamlit.app/
 - [Streamlit Documentation](https://docs.streamlit.io)
 - [Streamlit Deployment Guide](https://docs.streamlit.io/deploy)
 
-**This project is actively maintained. Feature suggestions and contributions are welcome!**
-
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/53367127/8746f091-ebcf-46f5-8591-2d9c0d0b1a9c/README-3.md
+**This project is actively maintained. Feature suggestions and contributions are welcome!** 
