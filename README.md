@@ -26,9 +26,7 @@ A magical, interactive web app that uses **Gemini 2.0 Flash** and a team of Crew
 
 ---
 
-## 🖼️ App Preview
-
-![App Screenshot](https://via.placeholder.com/900x400?text=Article 🚀 Features at a Glance
+## 🚀 Features at a Glance
 
 - 🎨 **Modern UI:** Custom purple/black theme, playful fonts, and smooth layout
 - 🤹 **Multi-Agent Workflow:** Five CrewAI agents (Planner, Researcher, Condenser, Collector, Writer) collaborate on every run
@@ -38,6 +36,8 @@ A magical, interactive web app that uses **Gemini 2.0 Flash** and a team of Crew
 - 📥 **One-Click Download:** Save your results as Markdown—no manual file wrangling
 - 🎉 **Celebration Animations:** Balloons and confetti when your topics are ready!
 - ⚡ **Powered by Gemini 2.0 Flash:** Lightning-fast, creative, and context-aware topic generation
+
+---
 
 ## 🧠 How Does It Work?
 
@@ -54,23 +54,7 @@ The app spins up a team of AI agents, each with a special role:
 
 **All powered by Gemini 2.0 Flash for speed, creativity, and depth.**
 
-## 🔄 Visual Workflow
-
-```mermaid
-graph TD
-    A[User Input Theme 🎤] --> B[Random Topic Count 🎲]
-    B --> C[Agent Assembly 🤖]
-    C --> D[Planner: Generate Topics 🎯]
-    D --> E[Researcher: Gather Info 🔍]
-    E --> F[Condenser: Summarize ✨]
-    F --> G[Collector: Compile Links 📚]
-    G --> H[Writer: Format Markdown ✍️]
-    H --> I[Streamlit UI 🎨]
-    I --> J[Download Markdown 📥]
-    I --> K[History Storage 📚]
-    style A fill:#9a7bff,stroke:#5e35b1
-    style J fill:#7c4dff,stroke:#5e35b1
-```
+---
 
 ## 🛠️ Installation & Quick Start
 
@@ -90,6 +74,8 @@ streamlit run app.py
 No setup needed!  
 👉 [Try it live](https://agentic-ai-article-title-generator.streamlit.app/) in your browser.
 
+---
+
 ## 🎮 How to Use
 
 1. **Enter your theme** (e.g., "Space Technology", "Mental Health", "AI in Education")
@@ -98,6 +84,28 @@ No setup needed!
 4. **Download your topics** as a Markdown file with one click
 5. **Revisit your brainstorms** in the sidebar—expand, download, or delete any session
 6. **Celebrate** with balloons and confetti when your ideas are ready!
+
+---
+
+## 🔄 Visual Workflow
+
+```mermaid
+graph TD
+    A[User Input Theme 🎤] --> B[Random Topic Count 🎲]
+    B --> C[Agent Assembly 🤖]
+    C --> D[Planner: Generate Topics 🎯]
+    D --> E[Researcher: Gather Info 🔍]
+    E --> F[Condenser: Summarize ✨]
+    F --> G[Collector: Compile Links 📚]
+    G --> H[Writer: Format Markdown ✍️]
+    H --> I[Streamlit UI 🎨]
+    I --> J[Download Markdown 📥]
+    I --> K[History Storage 📚]
+    style A fill:#9a7bff,stroke:#5e35b1
+    style J fill:#7c4dff,stroke:#5e35b1
+```
+
+---
 
 ## 🧩 Tech Stack
 
