@@ -1,6 +1,4 @@
-# ✨ Article Topic Generator with CrewAI & Gemini 2.0 Flash
-
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffimg.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor 2.0 Flash](https://img.shields.io/badge/gemini-2.0%20flash-4B8DF8?style=for-the-badge&logo=google&logoColor=whiteields.io/badge/crewai-multiagent-8B5CF6?style=for-the-badge fun way to brainstorm, organize, and download AI-powered article topics—right in your browser!**
+# ✨ Article Topic Generator with CrewAI & Gemini 2.0 Flash 
 
 ---
 
