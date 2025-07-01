@@ -91,16 +91,21 @@ No setup needed!
 
 ```mermaid
 graph LR
-    A[User Input Theme 🎤] --> B[Random Topic Count 🎲]
-    B --> C[Agent Assembly 🤖]
-    C --> D[Planner: Generate Topics 🎯]
-    D --> E[Researcher: Gather Info 🔍]
-    E --> F[Condenser: Summarize ✨]
-    F --> G[Collector: Compile Links 📚]
-    G --> H[Writer: Format Markdown ✍️]
-    H --> I[Streamlit UI 🎨]
+    A[User Input Theme 🎤] --> B[Random Topic Count 🎲] 
+
+    I[Streamlit UI 🎨]
     I --> J[Download Markdown 📥]
     I --> K[History Storage 📚]
+
+    subgraph Crew["Agent Assembly 🤖"]
+        D[Planner: Generate Topics 🎯]
+        D --> E[Researcher: Gather Info 🔍]
+        E --> F[Condenser: Summarize ✨]
+        F --> G[Collector: Compile Links 📚]
+        G --> H[Writer: Format Markdown ✍️]
+    end
+    B --> Crew
+    Crew --> I
     style A fill:#9a7bff,stroke:#5e35b1
     style J fill:#7c4dff,stroke:#5e35b1
 ```
