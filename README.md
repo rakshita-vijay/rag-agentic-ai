@@ -44,13 +44,13 @@ A magical, interactive web app that uses **Gemini 2.0 Flash** and a team of Crew
 **You type a theme.**  
 The app spins up a team of AI agents, each with a special role:
 
-| Agent | Emoji | Role |
-|-------|-------|------|
-| Topic Planner | 🎯 | Brainstorms creative topics for your theme |
-| Topic Researcher | 🔍 | Digs up facts, trends, and news for each topic |
-| Content Condenser | ✨ | Summarizes research into bite-sized prompts |
-| Link Collector | 📚 | Gathers all the best sources and references |
-| Article Prompt Writer | ✍️ | Formats everything into beautiful Markdown |
+| Agent | Role |
+|-------|------|
+| 🎯 Topic Planner | Brainstorms creative topics for your theme |
+| 🔍 Topic Researcher | Digs up facts, trends, and news for each topic |
+| ✨ Content Condenser | Summarizes research into bite-sized prompts |
+| 📚 Link Collector | Gathers all the best sources and references |
+| ✍️ Article Prompt Writer | Formats everything into beautiful Markdown |
 
 **All powered by Gemini 2.0 Flash for speed, creativity, and depth.**
 
@@ -90,7 +90,7 @@ No setup needed!
 ## 🔄 Visual Workflow
 
 ```mermaid
-graph TD
+graph LR
     A[User Input Theme 🎤] --> B[Random Topic Count 🎲]
     B --> C[Agent Assembly 🤖]
     C --> D[Planner: Generate Topics 🎯]
@@ -160,7 +160,8 @@ Open an issue or PR - let’s make brainstorming more fun, together! 🚀
 
 ---
 
-**Built with ❤️ by Rakshita and lots of ☕ + 🤖**  
-**Star this repo if you like AI magic in your browser! 🌟**
+**Built with ❤️ by Rakshita and lots of ☕ + 🤖**   
+
+---
 
 *This README was generated with more emojis and caffeine than should be legally allowed.* 
