@@ -14,6 +14,8 @@ The system uses **Gemini 2.0 Flash** as its language model and features a modern
 
 This web app helps you brainstorm and organize article ideas on any theme. Just enter your topic, and get ready-to-use Markdown content with topics, subtopics, and sources - all in your browser.
 
+---
+ 
 ## Features
 
 - **Interactive Web UI**: Modern Streamlit interface with purple/black theme 🎨
@@ -28,6 +30,8 @@ This web app helps you brainstorm and organize article ideas on any theme. Just 
 - **Error Handling**: Clear UI notifications for missing API keys or errors ⚠️
 - **Mobile-Friendly**: Responsive design works on all devices 📱
 
+---
+
 ## Repository Structure 
 ```
 article-topic-generator/
@@ -39,6 +43,8 @@ article-topic-generator/
 └── README.md                  # This documentation
 ```
 
+---
+
 ## Dependencies
 ```python
 crewai == 0.28.8
@@ -48,11 +54,15 @@ streamlit-extras
 pysqlite3-binary
 ```
 
+---
+
 ## Requirements
 
 - Python 3.10+
 - Google API key for Gemini (set as environment variable)
 - Internet connection
+
+---
 
 ## Installation & Usage
 
@@ -76,6 +86,8 @@ streamlit run app.py
 Visit the live app:  
 https://agentic-ai-article-title-generator.streamlit.app/
 
+---
+
 ## Workflow
 
 1. **Enter Theme**: Type your article theme in the input field
@@ -91,7 +103,7 @@ https://agentic-ai-article-title-generator.streamlit.app/
    - Previous generations in sidebar 📚
    - Expand to preview, download, or delete 🗑️
 ```mermaid
-graph TD
+graph LR
     A[User Input Theme] --> B(Random Topic Count: 5-10)
     B --> C[Agent Assembly]
     C --> D[Planner: Generate Topics]
@@ -105,6 +117,9 @@ graph TD
     style A fill:#9a7bff,stroke:#5e35b1
     style J fill:#7c4dff,stroke:#5e35b1
 ```
+
+---
+
 ## Agent Architecture
 | Agent | Role | Key Function | Emoji |
 |-------|------|-------------|-------|
@@ -113,6 +128,8 @@ graph TD
 | **Content Condenser** | Summarizer | Creates bullet-point summaries | ✨ |
 | **Link Collector** | Archivist | Gathers research sources | 📚 |
 | **Article Prompt Writer** | Compiler | Formats final output | ✍️ |
+
+---
 
 ## Key Updates
 
@@ -123,10 +140,16 @@ graph TD
 - **UI Notifications**: Error messages and success alerts
 - **Modern Styling**: Custom purple/black theme with animations
 
+---
+
 ## Related Resources
 - [CrewAI Documentation](https://docs.crewai.com)
 - [Gemini API Guide](https://ai.google.dev)
 - [Streamlit Documentation](https://docs.streamlit.io)
 - [Streamlit Deployment Guide](https://docs.streamlit.io/deploy)
 
+---
+
 **This project is actively maintained. Feature suggestions and contributions are welcome!** 
+
+---
