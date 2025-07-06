@@ -155,13 +155,19 @@ article-topic-generator/
   - Five specialized agents working in sequence
   - Real-time callbacks for progress tracking
   - Modular, extensible agent design
-
+  
 ---
-
+  
 ## 📝 Contributing
 
 Feature ideas? Found a bug?  
-Open an issue or PR - let’s make brainstorming more fun, together! 🚀
+Open an issue or PR - let’s make brainstorming more fun, together! 🚀 
+  
+---
+  
+## License
+
+This project is licensed under the MIT License.
 
 ---
 
