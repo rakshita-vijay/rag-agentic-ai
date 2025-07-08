@@ -3,3 +3,6 @@ runOnSave = true
 
 [python]
 version = "3.11"
+
+[theme]
+base = "dark" 
